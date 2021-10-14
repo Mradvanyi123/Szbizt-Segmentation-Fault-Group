@@ -65,7 +65,7 @@ Elvárás, hogy a rendszer tartalmazzon HTTP protokollon elérhető távoli szol
 ## Biztonsági követelmények és célok
 
 A funkcionális követelmények ismeretében nagy vonalakban felvázoltuk a rendszert és annak környezetét, ahogy azt a lenti ábra mutatja. A rendszert az általános felhasználók, és az adminisztrátorok használják, velük kerülhet interakcióba a rendszer. Mivel a tőlük érkező kéréseket, a viselkedésüket nem tudjuk kontrollálni, ezért a velük történő interakció bizalmi kérdéseket vet fel, ezt jelöli az ábrán a szaggatott piros vonal. A rendszer működtetéséhez szükség lesz a felhasználók (általános felhasználók és adminisztrátorok) adatainak tárolására, valamint a feltöltött fájlok adatait, illetve a hozzájuk fűzött megjegyzéseket is el kell tárolnunk. A tárolt adatok között kapcsolatot is kell létesíteni: a felhasználókat össze kell kötnünk az általuk feltöltött, letöltött fájlokkal, illetve az általuk írt megjegyzésekkel, továbbá a fájlok is összeköttetésben állnak a hozzájuk tartozó megjegyzésekkel.
-![caff store system](https://github.com/Mradvanyi123/Szbizt-Segmentation-Fault-Group/blob/Mradvanyi123-patch-1/Untitled%20Diagram.drawio)
+![caff store system](https://github.com/Mradvanyi123/Szbizt-Segmentation-Fault-Group/blob/szigetiatti-specs-1/system.png)
 
 A biztonsági követelményeket 6 kategóriába soroljuk:
 #### Bizalmasság:
