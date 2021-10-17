@@ -104,11 +104,9 @@ A biztonsági követelményeket 6 kategóriába soroljuk:
 #### Auditálás:
 
 -   A felhasználók tevékenységét naplózni kell.
-=======
-  Csapat tagok:
 
- - Ružinský Bálint Tamás
- - Horváth Kristóf
- - Szigeti Attila
- - Tóth-Baranyi Stella
- - Radványi Mátyás
+# Architektúra tervek (Design)
+## A rendszer struktúrája (komponens diagram)
+TODO Kristóf
+## A rendszer viselkedése (szekvencia diagramok)
+TODO Stella
