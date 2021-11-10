@@ -10,8 +10,8 @@ int main(int argc, char* argv[]) {
     if (argc == 3) {
         input = argv[1];
         output = argv[2];
+        caff = CAFF_reader(logger, input, output);
         try {
-            caff = CAFF_reader(logFile, input, output);
             caff.parse();
             caff.processToBmp();
         } catch (...) {
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         }
     } else {
         logger.logger("[main] Invalid number of program arguments!", true);
-        throw std::invalid_argument("This program takes exactly 3 arguments! CAFF file, BMP file, [optional: LogFile]");
+        throw std::invalid_argument("This program takes exactly 3 arguments! CAFF file, BMP file");
     }
     logger.logger("[main] Program ended");
     return 0;

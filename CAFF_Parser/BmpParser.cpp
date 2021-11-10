@@ -6,9 +6,8 @@
 #include <cstdio>
 #include "BmpParser.h"
 
-BmpParser::BmpParser(std::string &logFile) {
-    if (!logFile.empty())
-        this->logger = Logger(logFile.c_str());
+BmpParser::BmpParser(Logger &logFile) {
+    this->logger = logFile;
 }
 
 /// prepareBmpHeader sets up the structure of the header then writes it out to the destination file
@@ -83,7 +82,8 @@ void BmpParser::prepareDmpData(FILE *caffFile, FILE *bmpFile, int32 width, int32
             bmp_fwrite(&this->pixel.green, sizeof(int8), 1, bmpFile);
             bmp_fwrite(&this->pixel.red, sizeof(int8), 1, bmpFile);
         }
-        applyPadding(bmpFile, numberOfPadding);
+        if (numberOfPadding > 0)
+            applyPadding(bmpFile, numberOfPadding);
     }
     this->logger.logger("[BmpParser] Data written successfully");
     std::cout << "[BmpParser] Data written successfully" << std::endl;

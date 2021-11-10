@@ -13,6 +13,7 @@
 class BmpParser {
 private:
 //    Private variables
+    std::string logFile;
     Logger logger;
 
 //    Private structures
@@ -54,7 +55,7 @@ private:
 public:
 //    Constructor
     BmpParser() =default;
-    explicit BmpParser(std::string& logFile);
+    explicit BmpParser(Logger& logFile);
 //    Public functions
     void prepareBmpHeader(int32 width, int32 height, FILE *bmpFile);
     void prepareDmpData(FILE *caffFile, FILE *bmpFile, int32 width, int32 height, int fileSize);

@@ -10,24 +10,21 @@
 /// The constructor of the CAFF_reader class. It opens the given CAFF file if possible.
 /// \param fileName - the name of the CAFF file
 /// \param logFile - optional: name of the logfile
-CAFF_reader::CAFF_reader(std::string &logFile, std::string &inputFile, std::string &outputFile) {
+CAFF_reader::CAFF_reader(Logger &logFile, std::string &inputFile, std::string &outputFile) {
     this->inputFile = inputFile;
     this->outputFile = outputFile;
     this->caffFile = fopen(this->inputFile.c_str(), "rb");
     if (this->caffFile == nullptr) {
         throw std::invalid_argument("File path wrong or file does not exists!");
     }
-    if (!logFile.empty()) {
-        this->logger = Logger(logFile.c_str());
-        this->logFile = logFile;
-    }
+    this->logger = Logger(logFile);
 }
 
 /// The destructor of the CAFF_reader class. It closes the opened CAFF file.
 CAFF_reader::~CAFF_reader() {
     std::cout << "Closing the CAFF file" << std::endl;
-    if (this->caffFile != nullptr)
-        fclose(this->caffFile);
+//    if (this->caffFile != nullptr)
+//        fclose(this->caffFile);
 }
 
 /// parse is the main function of the CAFF_reader class
@@ -113,7 +110,7 @@ void CAFF_reader::readData() {
 /// processToBmp sets up a BmpParser class and sets up the header then writes out the
 /// data to the destination file (given as the second program argument)
 void CAFF_reader::processToBmp() {
-    BmpParser bmp = BmpParser(this->logFile);
+    BmpParser bmp = BmpParser(this->logger);
     FILE* bmpFile = fopen(this->outputFile.c_str(), "wb");
     bmp.prepareBmpHeader((int32)this->width, (int32)this->height, bmpFile);
     bmp.prepareDmpData(this->caffFile, bmpFile, (int32)this->width, (int32)this->height, (int32)this->caffFileSize);

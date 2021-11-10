@@ -14,13 +14,6 @@
 Logger::Logger(const char *logFileName) {
     this->logfile = fopen(logFileName, "a");
 }
-
-/// The destructor - closes the logfile
-Logger::~Logger() {
-    std::cout << "[INFO] Closing the logfile" << std::endl;
-    if (this->logfile != nullptr)
-        fclose(this->logfile);
-}
 // =============================================
 
 // =============================================
@@ -56,16 +49,16 @@ std::string Logger::timestamp() {
 }
 
 void Logger::logErr(const char *msg) {
-    if (this->logfile != nullptr) {
+    if (logfile != nullptr) {
         std::string time = timestamp();
-        fprintf(this->logfile, "%s [INFO] %s\n", time.c_str(), msg);
+        fprintf(logfile, "%s [ERROR] %s\n", time.c_str(), msg);
     }
 }
 
 void Logger::logStand(const char *msg) {
-    if (this->logfile != nullptr) {
+    if (logfile != nullptr) {
         std::string time = timestamp();
-        fprintf(this->logfile, "%s [ERROR] %s\n", time.c_str(), msg);
+        fprintf(logfile, "%s [INFO] %s\n", time.c_str(), msg);
     }
 }
 // =============================================

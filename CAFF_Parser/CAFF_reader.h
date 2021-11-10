@@ -14,13 +14,13 @@
 
 class CAFF_reader {
 private:
-    FILE* caffFile = nullptr;
-    long int caffFileSize = -1;
-    Logger logger;
+    FILE* caffFile;
+    int caffFileSize = 0;
     int64_t width = -1, height = -1;
     std::string outputFile;
     std::string inputFile;
     std::string logFile;
+    Logger logger;
 
     int readCaffBlock();
     void readHeader();
@@ -29,7 +29,7 @@ private:
 
 public:
     CAFF_reader() = default;;
-    explicit CAFF_reader(std::string &logFile, std::string &inputFile, std::string &outputFile);
+    explicit CAFF_reader(Logger &logFile, std::string &inputFile, std::string &outputFile);
     ~CAFF_reader();
 
     void parse();

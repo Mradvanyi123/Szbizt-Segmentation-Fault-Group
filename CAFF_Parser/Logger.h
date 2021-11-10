@@ -17,18 +17,14 @@ public:
     explicit Logger(const char* logFileName);
 
     void logger(const char* msg, bool err = false);
-
-    virtual ~Logger();
-
 private:
 //    Variables
-    FILE* logfile = nullptr;
+    FILE* logfile;
 
 //    Functions
-    static std::string timestamp();
+    std::string timestamp();
     void logErr(const char* msg);
     void logStand(const char* msg);
-
 };
 
 
