@@ -71,7 +71,6 @@ int CAFF_reader::readCaffBlock() {
 void CAFF_reader::readHeader() {
     int64_t length;
     caff_fread(&length, sizeof(int64_t), 1, this->caffFile);
-    std::cout << "h len: " << length << std::endl;
 //    skip the header for now
     caff_fseek(this->caffFile, length, SEEK_CUR);
 }
@@ -81,7 +80,6 @@ void CAFF_reader::readHeader() {
 void CAFF_reader::readCredits() {
     int64_t length;
     caff_fread(&length, sizeof(int64_t), 1, this->caffFile);
-    std::cout << "c len: " << length << std::endl;
 //    skip the credits for now
     caff_fseek(this->caffFile, length, SEEK_CUR);
 }
