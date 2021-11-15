@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <span (click)="onTitle()">CAFF App</span>
+  <span class="spacer"></span>
+  <mat-icon (click)="onAdd()">add_box</mat-icon>
+  <mat-icon [matMenuTriggerFor]="menu">account_circle</mat-icon>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onEditProfile()">Edit profile</button>
+  <button mat-menu-item (click)="onLogout()">Log Out</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

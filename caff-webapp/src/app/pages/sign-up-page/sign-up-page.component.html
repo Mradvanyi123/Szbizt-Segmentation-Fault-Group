@@ -1,0 +1,28 @@
+<div style="height: 100%;">
+  <mat-card>
+    <h1>CAFF browser</h1>
+    <div class="form-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Username again</mat-label>
+          <input matInput/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="'password'"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password again</mat-label>
+          <input matInput [type]="'password'"/>
+        </mat-form-field>
+        <button mat-button (click)="onSignUp()">Sign Up</button>
+    </div>
+    <span>Already have an account? <a routerLink="/signup">Sign In</a></span>
+  </mat-card>
+</div>
