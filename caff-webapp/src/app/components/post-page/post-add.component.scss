@@ -1,0 +1,21 @@
+button{
+  display: block;
+  margin: 0 auto;
+  color: white;
+  &.file-select-button{
+    background-color: rgb(47, 117, 221);
+  }
+  &.upload-btn{
+    background-color: rgb(29, 207, 29);
+  }
+}
+
+.file-select-button, .file-name {
+  margin: 8px;
+}
+
+.file-picker{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
