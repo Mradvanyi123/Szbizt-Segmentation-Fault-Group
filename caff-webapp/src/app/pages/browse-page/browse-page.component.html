@@ -1,4 +1,4 @@
 <div>
-  <app-post *ngFor="let img of mockImgs" [post]="img"></app-post>
+  <app-post *ngFor="let post of pictureService.posts" [post]="post"></app-post>
+  <div *ngIf="pictureService.posts.length===0"><i>No post found</i></div>
 </div>
-

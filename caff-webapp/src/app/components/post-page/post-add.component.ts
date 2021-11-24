@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { PictureHandlerService } from 'src/app/services/picture-handler.service';
 
 @Component({
-  selector: 'app-post-page',
+  selector: 'app-post-add',
   templateUrl: './post-add.component.html',
   styleUrls: ['./post-add.component.scss']
 })

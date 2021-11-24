@@ -1,14 +1,18 @@
 <mat-toolbar>
   <span (click)="onTitle()">CAFF App</span>
   <span class="spacer"></span>
+  <mat-icon style="margin: 0;" (click)="onSearchSubmit(searchInput.value)">search</mat-icon>
+  <input #searchInput type="text" placeholder="Search..." (keydown.enter)="onSearchSubmit(searchInput.value)">
+  <span class="spacer"></span>
   <mat-icon (click)="openDialog()">add_box</mat-icon>
-  <div class="user-info">{{userName}}</div>
-  <div class="user-info">{{userEmail}}</div>
   <mat-icon [matMenuTriggerFor]="menu">account_circle</mat-icon>
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-  <!-- <button mat-menu-item (click)="onEditProfile()">Edit profile</button> -->
+  <div class="personal-info">
+    <div class="user-info">{{userName}}</div>
+    <div class="user-info">{{userEmail}}</div>
+  </div>
   <button mat-menu-item (click)="onLogout()">Log Out</button>
 </mat-menu>
 

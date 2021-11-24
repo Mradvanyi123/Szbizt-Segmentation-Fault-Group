@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PictureHandlerService } from 'src/app/services/picture-handler.service';
+import { Post } from 'src/app/structures/Post';
 
 @Component({
   selector: 'app-browse-page',
@@ -7,18 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowsePageComponent implements OnInit {
 
-  mockImgs:string[] = [
-    'img1',
-    'img2',
-    'img3',
-    'img4',
-    'img5',
-    'img6',
-  ];
-
-  constructor() { }
+  constructor(public pictureService:PictureHandlerService) { }
 
   ngOnInit(): void {
+    this.loadPosts();
+  }
+
+  loadPosts():void{
+    this.pictureService.getFileList();
   }
 
 }

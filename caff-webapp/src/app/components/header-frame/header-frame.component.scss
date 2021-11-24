@@ -3,7 +3,17 @@
   flex: 1 1 auto;
 }
 
+input {
+  background: transparent;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-right: 10px;
+  width: 300px;
+  border: 1px gray solid;
+}
+
 mat-toolbar{
+
   position: fixed;
   top: 0;
   left: 0;
@@ -19,9 +29,15 @@ mat-icon{
   margin-right: 10px;
 }
 
+.personal-info{
+  padding: 10px;
+  border-bottom: 1px gray solid;
+}
+
 .user-info{
   font-size: 16px;
   margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 :host {

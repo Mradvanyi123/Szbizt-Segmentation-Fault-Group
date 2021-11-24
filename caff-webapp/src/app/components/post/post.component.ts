@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PictureHandlerService } from 'src/app/services/picture-handler.service';
+import { Post } from 'src/app/structures/Post';
 
 @Component({
   selector: 'app-post',
@@ -7,11 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post:string =''//later {title, img, comments ...}
+  @Input() post:Post ={id:'', img:'', userName:'', comments:[]}
 
-  constructor() { }
+  constructor(private pictureService:PictureHandlerService) { }
 
   ngOnInit(): void {
+  }
+
+  async onAddComment(target:HTMLInputElement):Promise<void>{
+    await this.pictureService.addComment(this.post.id, target.value);
+    target.value='';
+    target.blur();
   }
 
 }

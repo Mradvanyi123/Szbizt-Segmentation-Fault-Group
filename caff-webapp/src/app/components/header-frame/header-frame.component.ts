@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PostAddComponent } from 'src/app/components/post-page/post-add.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { PictureHandlerService } from 'src/app/services/picture-handler.service';
 
 @Component({
   selector: 'app-header-frame',
@@ -11,8 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderFrameComponent implements OnInit {
 
-  constructor(private router:Router, public dialog:MatDialog, private authService:AuthService) { }
-
+  constructor(private router:Router, public dialog:MatDialog, private authService:AuthService, private pictureService:PictureHandlerService) { }
 
   public get userName() : string {
     return this.authService.loggedInUser!.name
@@ -47,6 +47,10 @@ export class HeaderFrameComponent implements OnInit {
 
   onAdd():void{
 
+  }
+
+  onSearchSubmit(value:string):void{
+     this.pictureService.searchPost(value);
   }
 
 }

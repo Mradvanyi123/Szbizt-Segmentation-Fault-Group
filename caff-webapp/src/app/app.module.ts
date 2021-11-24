@@ -47,6 +47,6 @@ import { PostComponent } from './components/post/post.component';
     MatExpansionModule
   ],
   providers: [],
-  bootstrap: [AppComponent, PostAddComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
