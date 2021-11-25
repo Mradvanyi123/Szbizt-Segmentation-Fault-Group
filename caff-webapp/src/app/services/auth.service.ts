@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Roles, User } from '../structures/User';
+import { MOCK_USERS } from './mock';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,15 @@ export class AuthService {
 
   async login(username:string, password:string):Promise<User>{
     //http request
-    this.loggedInUser = new User('0', 'Test User','asd@asd.com', Roles.BASIC);
+    this.loggedInUser = MOCK_USERS[1];
     return this.loggedInUser;;
   }
 
   async logout():Promise<void>{
     this.loggedInUser = undefined;
+  }
+
+  async getUsers():Promise<User[]>{
+    return MOCK_USERS;
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostAddComponent } from 'src/app/components/post-page/post-add.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { PictureHandlerService } from 'src/app/services/picture-handler.service';
+import { Roles } from 'src/app/structures/User';
 
 @Component({
   selector: 'app-header-frame',
@@ -12,7 +13,7 @@ import { PictureHandlerService } from 'src/app/services/picture-handler.service'
 })
 export class HeaderFrameComponent implements OnInit {
 
-  constructor(private router:Router, public dialog:MatDialog, private authService:AuthService, private pictureService:PictureHandlerService) { }
+  constructor(private router:Router, public dialog:MatDialog, public authService:AuthService, private pictureService:PictureHandlerService) { }
 
   public get userName() : string {
     return this.authService.loggedInUser!.name
@@ -20,6 +21,14 @@ export class HeaderFrameComponent implements OnInit {
 
   public get userEmail() : string {
     return this.authService.loggedInUser!.email
+  }
+
+  public get roleText() : string {
+    return this.authService.loggedInUser?.role===Roles.ADMIN?'Admin':'Basic user'
+  }
+
+  public get adminRole() : Roles {
+    return Roles.ADMIN;
   }
 
 
@@ -40,13 +49,13 @@ export class HeaderFrameComponent implements OnInit {
     this.router.navigate(['auth','home']);
   }
 
+  onUsers():void{
+    this.router.navigate(['auth','users']);
+  }
+
   onLogout():void{
     //Discard token etc...
     this.router.navigate(['signin']);
-  }
-
-  onAdd():void{
-
   }
 
   onSearchSubmit(value:string):void{

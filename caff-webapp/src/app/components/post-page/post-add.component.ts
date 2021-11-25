@@ -12,6 +12,7 @@ export class PostAddComponent implements OnInit {
   @ViewChild('fileInput') fileInput:ElementRef<HTMLInputElement> | undefined;
   file: File | null = null;
 
+  title:string = '';
   constructor(public dialogRef: MatDialogRef<PostAddComponent>, private pictureService:PictureHandlerService) { }
 
   ngOnInit(): void {
@@ -31,9 +32,10 @@ export class PostAddComponent implements OnInit {
   }
 
   onUpload():void{
-    if(this.file)
-    this.pictureService.uploadFile(this.file.name);
-    this.onNoClick();
+    if(this.file && this.title!==''){
+      this.pictureService.uploadFile(this.title, this.file.name);
+      this.onNoClick();
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IComment, Post } from '../structures/Post';
+import { AuthService } from './auth.service';
 import { MOCK_POSTS } from './mock';
 
 @Injectable({
@@ -7,12 +8,13 @@ import { MOCK_POSTS } from './mock';
 })
 export class PictureHandlerService {
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   posts:Post[] = MOCK_POSTS;
 
-  uploadFile(fileBytes:string){
+  uploadFile(title:string, fileBytes:string){
     //TODO HTTP service
+    this.posts.unshift({id:Math.floor(Math.random() * 9999).toString(), img:fileBytes, title:title, userName:this.authService.loggedInUser!.name, comments:[] });
   }
 
   async getFileList():Promise<void>{

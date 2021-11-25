@@ -19,3 +19,11 @@ button{
   align-items: center;
   justify-content: space-between;
 }
+
+input {
+  background: transparent;
+  border-radius: 5px;
+  padding: 5px 5px;
+  width: calc(100% - 12px);
+  border: 1px gray solid;
+}

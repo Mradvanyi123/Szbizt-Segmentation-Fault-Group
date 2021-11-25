@@ -1,4 +1,5 @@
 <div >
+  <input type="text" placeholder="Post title" [(ngModel)]="title"/>
   <div class="file-picker">
     <input type="file" style="display: none" #fileInput accept="image/*" (change)="onChangeFileInput()" />
     <button mat-raised-button class="file-select-button" (click)="onClickFileInputButton()">

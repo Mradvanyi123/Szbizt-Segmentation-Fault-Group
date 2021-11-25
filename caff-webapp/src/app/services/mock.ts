@@ -1,4 +1,5 @@
 import { Post } from "../structures/Post";
+import { Roles, User } from "../structures/User";
 
 export const MOCK_POSTS:Post[]=[
     {id:'0', title:'Valami', img:'img1', userName:'Pista',comments: [{userName:'Béla',text:'jó kép'}, {userName:'Jolán',text:':)))'}]},
@@ -14,4 +15,16 @@ export const MOCK_POSTS:Post[]=[
     {id:'10',title:'Egykéthá', img:'mig11', userName:'Jolán',comments: []},
     {id:'11',title:'Poszt 11', img:'mig12', userName:'Sára',comments: []},
     {id:'12',title:'Poszt 12', img:'mig13', userName:'Anna',comments: [{userName:'Pista',text:'jó kép'}, {userName:'Sári',text:'-.-'}]},
+]
+
+export const MOCK_USERS:User[]=[
+    {id:'0',name:'Jani', email:'jani@gmail.com', role:Roles.BASIC},
+    {id:'2',name:'Pista', email:'pista@gmail.com', role:Roles.ADMIN},
+    {id:'3',name:'Jakab', email:'asd@gmail.com', role:Roles.BASIC},
+    {id:'4',name:'Béla', email:'lazac@gmail.com', role:Roles.BASIC},
+    {id:'5',name:'Sára', email:'sdf@gmail.com', role:Roles.BASIC},
+    {id:'6',name:'Jolán', email:'dfg@gmail.com', role:Roles.BASIC},
+    {id:'7',name:'Anna', email:'fgh@gmail.com', role:Roles.BASIC},
+    {id:'8',name:'Józsi', email:'ghj@gmail.com', role:Roles.BASIC},
+    {id:'9',name:'András', email:'ert@gmail.com', role:Roles.BASIC},
 ]
