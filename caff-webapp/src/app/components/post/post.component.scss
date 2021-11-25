@@ -7,3 +7,32 @@
   align-items: center;
   justify-content: center;
 }
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  .title{
+    font-weight: bold;
+    font-size: larger;
+  }
+}
+
+:host ::ng-deep .mat-expansion-panel{
+  box-shadow: none;
+}
+
+:host ::ng-deep .mat-expansion-panel-header:hover{
+  background-color: transparent !important;
+}
+
+.comment{
+  margin-bottom: 10px;
+  div:nth-child(1){
+    font-weight: bold;
+  }
+  div:nth-child(2){
+    margin-left: 10px;
+  }
+}

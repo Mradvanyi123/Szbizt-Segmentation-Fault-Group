@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Post } from '../structures/Post';
+import { IComment, Post } from '../structures/Post';
 import { MOCK_POSTS } from './mock';
 
 @Injectable({
@@ -22,11 +22,11 @@ export class PictureHandlerService {
   }
 
   searchPost(keyword:string):void{
-    this.posts = MOCK_POSTS.filter((p)=>p.userName.toLowerCase().includes(keyword.toLowerCase()));
+    this.posts = MOCK_POSTS.filter((p)=>p.title.toLowerCase().includes(keyword.toLowerCase()));
     console.log(this.posts);
   }
 
-  async addComment(postId:string, comment:string):Promise<void>{
+  async addComment(postId:string, comment:IComment):Promise<void>{
     this.posts.find(p=>p.id===postId)?.comments.push(comment);
   }
 }

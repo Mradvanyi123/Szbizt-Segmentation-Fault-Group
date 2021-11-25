@@ -1,5 +1,6 @@
 <mat-card>
-  <div>
+  <div class="header">
+    <span class="title">{{post.title}}</span>
     <span>{{post.userName}}</span>
   </div>
   <div class="image-display">
@@ -11,7 +12,13 @@
         Comments
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p *ngFor="let comment of post.comments">{{comment}}</p>
+
+    <div *ngFor="let comment of post.comments" class="comment">
+      <div>{{comment.userName}}:</div>
+      <div>{{comment.text}}</div>
+    </div>
+
+
     <mat-form-field appearance="outline">
       <mat-label>Add comment</mat-label>
       <input matInput #input (keydown.enter)="onAddComment(input)"/>
