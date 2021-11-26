@@ -23,5 +23,6 @@ public class PictureDto {
     @JsonProperty("picture_name")
     private String pictureName;
 
+    @JsonProperty("content")
     private byte[] content;
 }
