@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IComment, Post } from '../structures/Post';
 import { AuthService } from './auth.service';
+import { HttpService } from './http.service';
 import { MOCK_POSTS } from './mock';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { MOCK_POSTS } from './mock';
 })
 export class PictureHandlerService {
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private httpService:HttpService) { }
 
   posts:Post[] = MOCK_POSTS;
 
@@ -19,6 +20,7 @@ export class PictureHandlerService {
 
   async getFileList():Promise<void>{
     //HTTP get all pictures
+    this.httpService.getPictures('');
     this.posts = MOCK_POSTS;
     //return this.posts
   }

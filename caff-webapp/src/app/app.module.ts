@@ -23,6 +23,7 @@ import { PostComponent } from './components/post/post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
     MatDialogModule,
     MatExpansionModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [CanActivateRoute, CanActivateAdmin],
   bootstrap: [AppComponent]
