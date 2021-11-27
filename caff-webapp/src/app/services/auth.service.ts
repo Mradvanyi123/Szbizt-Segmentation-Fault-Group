@@ -7,7 +7,7 @@ import { MOCK_USERS } from './mock';
 })
 export class AuthService {
 
-  loggedInUser:User|undefined = {name: 'Jani', email:'asd@asd.com', id: '0', role:Roles.BASIC};
+  loggedInUser:User|undefined = {name: 'Jani', email:'asd@asd.com', id: 0, role:Roles.BASIC};
 
 
   public get isLoggedIn() : boolean {

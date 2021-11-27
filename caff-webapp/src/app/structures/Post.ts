@@ -5,7 +5,7 @@ export interface IComment{
 
 export class Post{
     constructor(
-        public id:string,
+        public id:number,
         public title:string,
         public userName:string,
         public img:string,

@@ -8,14 +8,42 @@
   justify-content: center;
 }
 
+.title-input{
+  background: transparent;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-right: 10px;
+  width: 300px;
+  border: 1px gray solid;
+}
+
 .header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
-  .title{
-    font-weight: bold;
-    font-size: larger;
+  .title-icons{
+    display: flex;
+    align-items: center;
+    mat-icon{
+      transition: all 0.3s;
+      opacity: 0;
+      font-size: 20px;
+      cursor: pointer;
+      &:nth-child(2){
+        color: rgb(238, 75, 75);
+      }
+    }
+    .icon-wrapper{
+      margin-left: 10px;
+    }
+    .title{
+      font-weight: bold;
+      font-size: larger;
+    }
+    &:hover mat-icon{
+      opacity: 1;
+    }
   }
 }
 

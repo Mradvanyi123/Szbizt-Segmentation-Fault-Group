@@ -1,6 +1,15 @@
 <mat-card>
   <div class="header">
-    <span class="title">{{post.title}}</span>
+    <div class="title-icons">
+
+      <span *ngIf="!titleIsEdit" class="title">{{post.title}}</span>
+      <input *ngIf="titleIsEdit" class="title" placeholder="{{post.title}}" class="title-input" #titleInput (keydown.enter)="onTitleSubmit(titleInput)"/>
+
+      <div class="icon-wrapper" *ngIf="isAdmin">
+        <mat-icon class="icon" (click)="onEdit()">edit</mat-icon>
+        <mat-icon class="icon" (click)="onDelete()">delete</mat-icon>
+      </div>
+    </div>
     <span>{{post.userName}}</span>
   </div>
   <div class="image-display">

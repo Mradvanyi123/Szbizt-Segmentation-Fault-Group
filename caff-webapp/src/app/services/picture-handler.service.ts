@@ -14,7 +14,7 @@ export class PictureHandlerService {
 
   uploadFile(title:string, fileBytes:string){
     //TODO HTTP service
-    this.posts.unshift({id:Math.floor(Math.random() * 9999).toString(), img:fileBytes, title:title, userName:this.authService.loggedInUser!.name, comments:[] });
+    this.posts.unshift({id:Math.floor(Math.random() * 9999), img:fileBytes, title:title, userName:this.authService.loggedInUser!.name, comments:[] });
   }
 
   async getFileList():Promise<void>{
@@ -28,7 +28,18 @@ export class PictureHandlerService {
     console.log(this.posts);
   }
 
-  async addComment(postId:string, comment:IComment):Promise<void>{
+  async addComment(postId:number, comment:IComment):Promise<void>{
     this.posts.find(p=>p.id===postId)?.comments.push(comment);
+  }
+
+  async editTitle(postId:number, newTitle:string):Promise<void>{
+    let post:Post|undefined = this.posts.find(p=>p.id===postId);
+    if(post)
+      post.title = newTitle;
+  }
+
+  async deletePost(postId:number):Promise<void>{
+    let idx:number = this.posts.findIndex(p=>p.id===postId);
+    this.posts.splice(idx,1);
   }
 }
