@@ -7,16 +7,14 @@ import { MOCK_USERS } from './mock';
 })
 export class AuthService {
 
-  loggedInUser:User|undefined = {name: 'Jani', email:'asd@asd.com', id: 0, role:Roles.BASIC};
+  loggedInUser:User|undefined;
 
 
   public get isLoggedIn() : boolean {
-    return this.loggedInUser!==undefined || this.loggedInUser!== null;
+    return this.loggedInUser!==undefined && this.loggedInUser!== null;
   }
 
-
   constructor() { }
-
 
   async login(username:string, password:string):Promise<User>{
     //http request

@@ -22,6 +22,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PostComponent } from './components/post/post.component';
 import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
     MatExpansionModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CanActivateRoute, CanActivateAdmin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

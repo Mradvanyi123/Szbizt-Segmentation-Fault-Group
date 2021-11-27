@@ -13,7 +13,7 @@ export class SignInPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   async onLogin():Promise<void>{
     //Validaciok, meg minden
     await this.authService.login('Jani', 'Password1');
