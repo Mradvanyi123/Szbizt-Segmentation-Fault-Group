@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { CommentDto } from '../structures/CommentDto';
 import { PictureDto } from '../structures/PictureDto';
 import { User } from '../structures/User';
