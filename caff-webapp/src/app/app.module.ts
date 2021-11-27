@@ -20,7 +20,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PostComponent } from './components/post/post.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
 
@@ -49,7 +49,8 @@ import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
     MatMenuModule,
     MatDialogModule,
     MatExpansionModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CanActivateRoute, CanActivateAdmin],
   bootstrap: [AppComponent]

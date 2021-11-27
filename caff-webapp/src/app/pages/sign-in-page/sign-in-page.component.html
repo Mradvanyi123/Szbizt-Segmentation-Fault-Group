@@ -4,12 +4,12 @@
     <div class="form-fields">
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
-          <input matInput/>
+          <input matInput [errorStateMatcher]="matcher" [formControl]="userNameControl"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput [type]="'password'"/>
+          <input matInput [type]="'password'" [errorStateMatcher]="matcher"  [formControl]="passwordControl"/>
         </mat-form-field>
         <button mat-button (click)="onLogin()">Sign In</button>
     </div>

@@ -22,6 +22,10 @@ export class AuthService {
     return this.loggedInUser;;
   }
 
+  async signUp(username:string, email:string, password:string):Promise<void>{
+    //TODO
+  }
+
   async logout():Promise<void>{
     this.loggedInUser = undefined;
   }

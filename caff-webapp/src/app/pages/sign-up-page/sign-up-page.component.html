@@ -4,25 +4,26 @@
     <div class="form-fields">
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
-          <input matInput/>
+          <input matInput [formControl]="userNameControl" [errorStateMatcher]="matcher"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Username again</mat-label>
-          <input matInput/>
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="emailControl" [errorStateMatcher]="matcher"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput [type]="'password'"/>
+          <input matInput [type]="'password'" [formControl]="passwordControl" [errorStateMatcher]="matcher"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password again</mat-label>
-          <input matInput [type]="'password'"/>
+          <input matInput [type]="'password'" [formControl]="password2Control" [errorStateMatcher]="matcher"/>
         </mat-form-field>
+        <div *ngIf="errorMsg!==''" class="error">{{errorMsg}}</div>
         <button mat-button (click)="onSignUp()">Sign Up</button>
     </div>
-    <span>Already have an account? <a routerLink="/signup">Sign In</a></span>
+    <span>Already have an account? <a routerLink="/signin">Sign In</a></span>
   </mat-card>
 </div>
