@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,17 +14,12 @@ import javax.validation.constraints.NotEmpty;
 public class CommentDto {
 
     @JsonProperty("id")
-    private Long id;
+    private UUID id;
 
     @NotBlank
     @NotEmpty
-    @JsonProperty("picture_id")
-    private Long pictureId;
-
-    @NotBlank
-    @NotEmpty
-    @JsonProperty("user_id")
-    private Long userId;
+    @JsonProperty("user")
+    private UserDto user; //TODO az auth miatt ez nem fog kelleni
 
     @NotEmpty
     @NotBlank

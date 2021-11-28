@@ -1,13 +1,13 @@
-package hu.bme.sfg.catalogbackend;
+package hu.bme.sfg.caffauthserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CatalogBackendApplication {
+public class CaffauthserverApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CatalogBackendApplication.class, args);
+        SpringApplication.run(CaffauthserverApplication.class, args);
     }
 
 }

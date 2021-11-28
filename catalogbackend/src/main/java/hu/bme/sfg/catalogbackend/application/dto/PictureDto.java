@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.UUID;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,16 +15,19 @@ import javax.validation.constraints.NotEmpty;
 public class PictureDto {
 
     @JsonProperty("id")
-    private Long id;
-
-    @JsonProperty("user_name")
-    private String userName;
+    private UUID id;
 
     @NotBlank
     @NotEmpty
-    @JsonProperty("picture_name")
-    private String pictureName;
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("user")
+    private UserDto user;
 
     @JsonProperty("content")
     private byte[] content;
+
+    @JsonProperty("comments")
+    List<CommentDto> comments;
 }

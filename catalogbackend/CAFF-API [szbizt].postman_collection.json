@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "fe534905-e6fa-43a2-a8b7-bec0e1fe5634",
+		"name": "CAFF-API [szbizt]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get pictures + filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"picture"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "fű",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get picture by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/picture/c2b74058-de55-4126-9620-bb0e2f8ec4c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"picture",
+						"c2b74058-de55-4126-9620-bb0e2f8ec4c3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "fű",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new picture",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Másik kutyás kép\",\r\n        \"user\": {\r\n            \"username\": \"stella\"\r\n        },\r\n        \"content\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/picture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Ez is nagyon aranyos\",\r\n    \"user\": {\r\n        \"username\": \"zsolti\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/picture/c2b74058-de55-4126-9620-bb0e2f8ec4c3/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"picture",
+						"c2b74058-de55-4126-9620-bb0e2f8ec4c3",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete picture",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/picture/6ea6fdcb-3189-41be-bca2-bffcacf85ec0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"picture",
+						"6ea6fdcb-3189-41be-bca2-bffcacf85ec0"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "fű",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
