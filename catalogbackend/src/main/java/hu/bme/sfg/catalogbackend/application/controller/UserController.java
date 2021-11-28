@@ -29,5 +29,10 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping
+    public ResponseEntity<UserDto> getMyInfo(Principal principal){
+        return ResponseEntity.ok(userService.getMyInfo(principal));
+    }
 }
 

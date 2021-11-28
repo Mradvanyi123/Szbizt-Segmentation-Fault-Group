@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -59,9 +60,8 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public PictureDto createPicture(PictureDto pictureDto) throws PictureException {
-        //Picture newPicture = pictureMapper.pictureDtoToPicture(pictureDto);
-        User creator = userRepository.findByUserName(pictureDto.getUser().getUserName()).get(); //TODO auth-ra kicserélni
+    public PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException {
+        User creator = userRepository.findByUserName(principal.getName()).get();
         byte[] picture = getPicture(pictureDto.getContent()); //TODO CaffParser
 
         Picture newPicture = Picture.builder()
@@ -78,9 +78,9 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public CommentDto postComment(UUID pictureId, CommentDto commentDto) throws PictureException {
+    public CommentDto postComment(UUID pictureId, CommentDto commentDto, Principal principal) throws PictureException {
         Optional<Picture> picture = pictureRepositroy.findById(pictureId);
-        User creator = userRepository.findByUserName(commentDto.getUser().getUserName()).get(); //TODO auth-ra kicserélni
+        User creator = userRepository.findByUserName(principal.getName()).get();
 
         if (picture.isPresent()) {
             Comment newComment = Comment.builder()

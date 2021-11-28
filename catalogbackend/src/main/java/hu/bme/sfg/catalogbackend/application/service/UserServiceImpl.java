@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -37,5 +39,10 @@ public class UserServiceImpl implements UserService {
             log.error("Username or email is not unique");
             throw new UserException("Username or email is not unique");
         }
+    }
+
+    @Override
+    public UserDto getMyInfo(Principal principal){
+        return userMapper.userToUserDto(userRepository.findByUserName(principal.getName()).get());
     }
 }
