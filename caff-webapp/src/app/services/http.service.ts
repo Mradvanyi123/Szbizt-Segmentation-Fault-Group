@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommentDto } from '../structures/CommentDto';
 import { PictureDto } from '../structures/PictureDto';
@@ -28,6 +28,10 @@ export class HttpService {
   }
 
   async getPictures(keyword:string){
+    let params:HttpParams|undefined;
+    // if(keyword!==''){
+    //   params= 
+    // }
     let r = await this.http.get<PictureDto>(this.basePath+'picture', {params:{name:keyword}}).toPromise();
     console.log(r);
   }
