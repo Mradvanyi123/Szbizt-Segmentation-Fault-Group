@@ -6,140 +6,271 @@
 	},
 	"item": [
 		{
-			"name": "get pictures + filter",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/picture",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"picture"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "fű",
-							"disabled": true
+			"name": "Picture requests",
+			"item": [
+				{
+					"name": "get pictures + filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "fű",
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get picture by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/picture/22ada12d-fbd0-4a78-9dfa-e82b86c1d668",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"picture",
-						"22ada12d-fbd0-4a78-9dfa-e82b86c1d668"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create new picture",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Másik kutyás kép\",\r\n        \"user\": {\r\n            \"username\": \"stella\"\r\n        },\r\n        \"content\": null\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+					},
+					"response": []
+				},
+				{
+					"name": "get picture by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/picture/22ada12d-fbd0-4a78-9dfa-e82b86c1d668",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture",
+								"22ada12d-fbd0-4a78-9dfa-e82b86c1d668"
+							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new picture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Másik kutyás kép\",\r\n        \"user\": {\r\n            \"username\": \"stella\"\r\n        },\r\n        \"content\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"Ez is nagyon aranyos\",\r\n    \"user\": {\r\n        \"username\": \"zsolti\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/picture/c2b74058-de55-4126-9620-bb0e2f8ec4c3/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture",
+								"c2b74058-de55-4126-9620-bb0e2f8ec4c3",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete picture",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/picture/6ea6fdcb-3189-41be-bca2-bffcacf85ec0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture",
+								"6ea6fdcb-3189-41be-bca2-bffcacf85ec0"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "fű",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDQUZGIENhdGFsb2cgQmFja2VuZCBKV1QgSXNzdWVyIiwiYXVkIjoiQ0FGRiBDYXRhbG9nIEJhY2tlbmQiLCJzdWIiOiJzdGVsbGEiLCJleHAiOjE2MzgxMjUwOTF9.l63Jmriurpcq2Yf7Ycv6vh6NZ31OqLvVUSWss-j_6RA48_K11PZfsPE7_A_Dv_-WBAlclZmA9Q5qtaRrLoC8ow",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/picture",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"picture"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create new comment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"comment\": \"Ez is nagyon aranyos\",\r\n    \"user\": {\r\n        \"username\": \"zsolti\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
 					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/picture/c2b74058-de55-4126-9620-bb0e2f8ec4c3/comment",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"picture",
-						"c2b74058-de55-4126-9620-bb0e2f8ec4c3",
-						"comment"
-					]
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "delete picture",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/picture/6ea6fdcb-3189-41be-bca2-bffcacf85ec0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"picture",
-						"6ea6fdcb-3189-41be-bca2-bffcacf85ec0"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "fű",
-							"disabled": true
+			"name": "User request",
+			"item": [
+				{
+					"name": "LogIn",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"connection": true,
+							"accept-encoding": true
 						}
-					]
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"stella\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "stellasipi",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"connection": true,
+							"accept-encoding": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"stella@email.hu\",\r\n    \"username\": \"stella\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
