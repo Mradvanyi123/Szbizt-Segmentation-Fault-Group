@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommentDto } from '../structures/CommentDto';
-import { PictureDto, userDto } from '../structures/PictureDto';
-import { User } from '../structures/User';
+import { PictureDto } from '../structures/PictureDto';
+import { Roles, User } from '../structures/User';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,35 @@ import { User } from '../structures/User';
 export class HttpService {
   readonly basePath:string = 'http://localhost:8080/api/';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient ) { }
 
-  async login(username:string, password:string){
-    let token = await this.http.post<{token:string}>(this.basePath+'login',{username:username, password:password}).toPromise();
-    console.log(token);
-    let user = await this.http.get<string>(this.basePath+'user', {headers: new HttpHeaders().set('Authorization', `Bearer ${token.token}`)}).toPromise();
-    console.log(user);
+  async login(username:string, password:string):Promise<User>{
+    try{
+      let token = await this.http.post<{token:string}>(this.basePath+'login',{username:username, password:password}).toPromise();
+      let user = await this.http.get<User>(this.basePath+'user', {headers: new HttpHeaders().set('Authorization', `Bearer ${token.token}`)}).toPromise();
+      AuthService.token = token.token;
+      if(user.role.toString()==='USER')user.role=Roles.USER 
+      else user.role=Roles.ADMIN;
+      return user;
+    }catch(error:any){
+      throw error;
+    }
+  }
+
+  async logout(){
+    try{
+      await this.http.post(this.basePath+'login',{}, {headers: new HttpHeaders().set('Authorization', `Bearer ${AuthService.token}`)}).toPromise();
+    }catch(error:any){
+      throw error;
+    }
   }
 
   async register(username:string,email:string, password:string){
-    let r = await this.http.post<User>(this.basePath+'user/register', {username:username, email:email, password:password}).toPromise();
-    console.log(r);
+    try{
+      await this.http.post<User>(this.basePath+'user/register', {username:username, email:email, password:password}).toPromise();
+    }catch(error:any){
+      throw error;
+    }
   }
 
   async getUsers(){
@@ -51,5 +69,17 @@ export class HttpService {
   async deltePicture(postId:string){
     let r = await this.http.delete<object>(this.basePath+`picture/${postId}`).toPromise();
     console.log(r);
+  }
+
+  public handleError(error:any):string{
+    if(error instanceof HttpErrorResponse){
+      if(error.status===403){
+        return 'Incorrect username or password'
+      }
+      if(error.status===500){
+        return 'Server error'
+      }
+    }
+    return 'Unknown error!';
   }
 }

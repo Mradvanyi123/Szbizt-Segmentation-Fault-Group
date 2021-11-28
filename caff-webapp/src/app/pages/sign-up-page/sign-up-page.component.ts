@@ -20,6 +20,8 @@ export class SignUpPageComponent implements OnInit {
 
   errorMsg='';
 
+  isLoading:boolean=false;
+
   constructor(private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -51,7 +53,11 @@ export class SignUpPageComponent implements OnInit {
     }
     if(ret) return;
 
-    await this.authService.signUp(this.userNameControl.value, this.emailControl.value, this.passwordControl.value);
+    this.isLoading=true;
+    this.errorMsg = '';
+    this.errorMsg = await this.authService.signUp(this.userNameControl.value, this.emailControl.value, this.passwordControl.value);
+    this.isLoading=false;
+    if(this.errorMsg==='')
     this.router.navigate(['signin']);
   }
 

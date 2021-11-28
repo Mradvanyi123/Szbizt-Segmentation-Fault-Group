@@ -1,17 +1,12 @@
 import { Byte } from "@angular/compiler/src/util";
 import { CommentDto } from "./CommentDto";
 import { Post } from "./Post";
-
-export interface userDto{
-    id:string,
-    email:string,
-    username:string
-}
+import { User, } from "./User";
 
 export class PictureDto{
     constructor(
         public id:string,
-        public user:userDto,
+        public user:User,
         public pictureName:string,
         public content:Byte[],
         public comments:CommentDto[]

@@ -18,13 +18,13 @@ export const MOCK_POSTS:Post[]=[
 ]
 
 export const MOCK_USERS:User[]=[
-    {id:0,name:'Jani', email:'jani@gmail.com', role:Roles.BASIC},
-    {id:2,name:'Pista', email:'pista@gmail.com', role:Roles.ADMIN},
-    {id:3,name:'Jakab', email:'asd@gmail.com', role:Roles.BASIC},
-    {id:4,name:'Béla', email:'lazac@gmail.com', role:Roles.BASIC},
-    {id:5,name:'Sára', email:'sdf@gmail.com', role:Roles.BASIC},
-    {id:6,name:'Jolán', email:'dfg@gmail.com', role:Roles.BASIC},
-    {id:7,name:'Anna', email:'fgh@gmail.com', role:Roles.BASIC},
-    {id:8,name:'Józsi', email:'ghj@gmail.com', role:Roles.BASIC},
-    {id:9,name:'András', email:'ert@gmail.com', role:Roles.BASIC},
+    {id:'0',username:'Jani', email:'jani@gmail.com', role:Roles.USER},
+    {id:'2',username:'Pista', email:'pista@gmail.com', role:Roles.ADMIN},
+    {id:'3',username:'Jakab', email:'asd@gmail.com', role:Roles.USER},
+    {id:'4',username:'Béla', email:'lazac@gmail.com', role:Roles.USER},
+    {id:'5',username:'Sára', email:'sdf@gmail.com', role:Roles.USER},
+    {id:'6',username:'Jolán', email:'dfg@gmail.com', role:Roles.USER},
+    {id:'7',username:'Anna', email:'fgh@gmail.com', role:Roles.USER},
+    {id:'8',username:'Józsi', email:'ghj@gmail.com', role:Roles.USER},
+    {id:'9',username:'András', email:'ert@gmail.com', role:Roles.USER},
 ]

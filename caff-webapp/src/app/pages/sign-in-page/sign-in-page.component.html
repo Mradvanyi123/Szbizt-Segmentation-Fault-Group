@@ -11,7 +11,11 @@
           <mat-label>Password</mat-label>
           <input matInput [type]="'password'" [errorStateMatcher]="matcher"  [formControl]="passwordControl"/>
         </mat-form-field>
-        <button mat-button (click)="onLogin()">Sign In</button>
+        <div *ngIf="errorMsg!==''" class="error">{{errorMsg}}</div>
+        <button class="sing-in-btn" mat-button (click)="onLogin()">
+          <div *ngIf="!isLoading">Sign In</div>
+          <mat-spinner *ngIf="isLoading" [diameter]="20 "></mat-spinner>
+        </button>
     </div>
     <span>Don't have an account? <a routerLink="/signup">Sign Up</a></span>
   </mat-card>

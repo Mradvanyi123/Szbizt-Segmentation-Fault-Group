@@ -14,7 +14,7 @@
     <div class="user-info">{{userEmail}}</div>
     <div class="user-info">{{roleText}}</div>
   </div>
-  <button mat-menu-item (click)="onUsers()" *ngIf="authService.loggedInUser!.role===adminRole">Users</button>
+  <button mat-menu-item (click)="onUsers()" *ngIf="isAdmin">Users</button>
   <button mat-menu-item (click)="onLogout()">Log Out</button>
 </mat-menu>
 

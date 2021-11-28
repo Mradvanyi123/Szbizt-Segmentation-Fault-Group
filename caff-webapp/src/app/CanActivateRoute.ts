@@ -20,11 +20,11 @@ export class CanActivateRoute implements CanActivate{
 @Injectable()
 export class CanActivateAdmin implements CanActivate{
 
-    constructor(private authService:AuthService){}
+    constructor(){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         
-        if(this.authService.loggedInUser?.role===Roles.ADMIN){
+        if(AuthService.loggedInUser?.role===Roles.ADMIN){
             return true;
         }
         return false;

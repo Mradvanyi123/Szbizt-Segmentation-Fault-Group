@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
 import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [CanActivateRoute, CanActivateAdmin],
   bootstrap: [AppComponent]

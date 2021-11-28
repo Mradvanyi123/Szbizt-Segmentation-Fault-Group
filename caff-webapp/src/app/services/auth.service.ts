@@ -8,27 +8,39 @@ import { MOCK_USERS } from './mock';
 })
 export class AuthService {
 
-  loggedInUser:User|undefined;
+  static loggedInUser:User|undefined;
+  static token:string = '';
 
 
   public get isLoggedIn() : boolean {
-    return this.loggedInUser!==undefined && this.loggedInUser!== null;
+    return AuthService.loggedInUser!==undefined && AuthService.loggedInUser!== null;
   }
 
   constructor(private httpService:HttpService) { }
 
-  async login(username:string, password:string):Promise<User>{
-    this.httpService.login(username, password);
-    this.loggedInUser = MOCK_USERS[1];
-    return this.loggedInUser;;
+  async login(username:string, password:string):Promise<string>{
+    try {
+      let userResponse = await this.httpService.login(username, password);
+      AuthService.loggedInUser = userResponse;
+      return '';
+    } catch (error:any) {
+      return this.httpService.handleError(error);
+    }
   }
 
-  async signUp(username:string, email:string, password:string):Promise<void>{
-    //TODO
+  async signUp(username:string, email:string, password:string):Promise<string>{
+    try {
+      await this.httpService.register(username, email, password);
+      return '';
+    } catch (error:any) {
+      return this.httpService.handleError(error);
+    }
   }
 
   async logout():Promise<void>{
-    this.loggedInUser = undefined;
+    await this.httpService.logout();
+    AuthService.token='';
+    AuthService.loggedInUser = undefined;
   }
 
   async getUsers():Promise<User[]>{

@@ -15,7 +15,7 @@ export class PictureHandlerService {
 
   uploadFile(title:string, fileBytes:string){
     //TODO HTTP service
-    this.posts.unshift({id:Math.floor(Math.random() * 9999).toString(), img:fileBytes, title:title, userName:this.authService.loggedInUser!.name, comments:[] });
+    this.posts.unshift({id:Math.floor(Math.random() * 9999).toString(), img:fileBytes, title:title, userName:AuthService.loggedInUser!.username, comments:[] });
   }
 
   async getFileList():Promise<void>{
@@ -27,7 +27,6 @@ export class PictureHandlerService {
 
   searchPost(keyword:string):void{
     this.posts = MOCK_POSTS.filter((p)=>p.title.toLowerCase().includes(keyword.toLowerCase()));
-    console.log(this.posts);
   }
 
   async addComment(postId:string, comment:IComment):Promise<void>{

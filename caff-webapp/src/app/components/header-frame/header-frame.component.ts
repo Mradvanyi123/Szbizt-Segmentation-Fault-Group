@@ -16,19 +16,19 @@ export class HeaderFrameComponent implements OnInit {
   constructor(private router:Router, public dialog:MatDialog, public authService:AuthService, private pictureService:PictureHandlerService) { }
 
   public get userName() : string {
-    return this.authService.loggedInUser!.name
+    return AuthService.loggedInUser!.username
   }
 
   public get userEmail() : string {
-    return this.authService.loggedInUser!.email
+    return AuthService.loggedInUser!.email
   }
 
   public get roleText() : string {
-    return this.authService.loggedInUser?.role===Roles.ADMIN?'Admin':'Basic user'
+    return AuthService.loggedInUser?.role===Roles.ADMIN?'Admin':'Basic user'
   }
 
-  public get adminRole() : Roles {
-    return Roles.ADMIN;
+  public get isAdmin() : boolean {
+    return AuthService.loggedInUser?.role===Roles.ADMIN;
   }
 
 

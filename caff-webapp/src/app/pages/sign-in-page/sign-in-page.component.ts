@@ -18,6 +18,9 @@ export class SignInPageComponent implements OnInit {
   passwordControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
+  isLoading:boolean = false;
+
+  errorMsg='';
   constructor(private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -36,7 +39,10 @@ export class SignInPageComponent implements OnInit {
     if(ret) return;
     
     //Validaciok, meg minden
-    await this.authService.login(this.userNameControl.value, this.passwordControl.value);
+    this.isLoading=true;
+    this.errorMsg = await this.authService.login(this.userNameControl.value, this.passwordControl.value);
+    this.isLoading=false;
+    if(this.errorMsg==='')
     this.router.navigate(['auth', 'home']);
   }
 

@@ -19,14 +19,14 @@ export class PostComponent implements OnInit {
 
 
   get isAdmin(){
-    return this.authService.loggedInUser?.role===Roles.ADMIN;
+    return AuthService.loggedInUser?.role===Roles.ADMIN;
   }
 
   ngOnInit(): void {
   }
 
   async onAddComment(target:HTMLInputElement):Promise<void>{
-    await this.pictureService.addComment(this.post.id,{userName:this.authService.loggedInUser!.name, text:target.value});
+    await this.pictureService.addComment(this.post.id,{userName:AuthService.loggedInUser!.username, text:target.value});
     target.value='';
     target.blur();
   }
