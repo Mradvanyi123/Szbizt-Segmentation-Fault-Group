@@ -14,20 +14,16 @@ import java.util.UUID;
 @Getter
 public class PictureDto {
 
+    @JsonProperty("comments")
+    List<CommentDto> comments;
     @JsonProperty("id")
     private UUID id;
-
     @NotBlank
     @NotEmpty
     @JsonProperty("name")
     private String name;
-
     @JsonProperty("user")
     private UserDto user;
-
     @JsonProperty("content")
     private byte[] content;
-
-    @JsonProperty("comments")
-    List<CommentDto> comments;
 }

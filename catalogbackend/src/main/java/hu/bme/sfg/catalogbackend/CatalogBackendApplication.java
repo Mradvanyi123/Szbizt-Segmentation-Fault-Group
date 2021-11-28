@@ -6,11 +6,13 @@ import hu.bme.sfg.catalogbackend.domain.User;
 import hu.bme.sfg.catalogbackend.repository.CommentRepository;
 import hu.bme.sfg.catalogbackend.repository.PictureRepositroy;
 import hu.bme.sfg.catalogbackend.repository.UserRepository;
+import hu.bme.sfg.catalogbackend.util.Role;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
@@ -25,6 +27,8 @@ public class CatalogBackendApplication implements CommandLineRunner {
 
     private CommentRepository commentRepository;
 
+    private PasswordEncoder passwordEncoder;
+
     public static void main(String[] args) {
         SpringApplication.run(CatalogBackendApplication.class, args);
         log.info("CatalogBackendApplication is successfully started");
@@ -33,16 +37,27 @@ public class CatalogBackendApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Test data
+        User userAdmin = User.builder()
+                .email("admin@email.hu")
+                .userName("admin")
+                .password(passwordEncoder.encode("admin"))
+                .role(Role.ADMIN)
+                .build();
+
         User userAnne = User.builder()
                 .email("anne@email.hu")
                 .userName("anne")
+                .password(passwordEncoder.encode("password"))
+                //.role(Role.USER)
                 .build();
         User userPeter = User.builder()
                 .email("peter@email.hu")
                 .userName("peter")
+                .password(passwordEncoder.encode("password"))
+                //.role(Role.USER)
                 .build();
 
-        userRepository.saveAll(Arrays.asList(userAnne, userPeter));
+        userRepository.saveAll(Arrays.asList(userAdmin, userAnne, userPeter));
 
         Picture pictureFlower = Picture.builder()
                 .name("Lila virágok")
