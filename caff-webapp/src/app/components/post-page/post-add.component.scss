@@ -6,7 +6,9 @@ button{
     background-color: rgb(47, 117, 221);
   }
   &.upload-btn{
-    background-color: rgb(29, 207, 29);
+    color: black;
+    height: 40px;
+    width: 80px;
   }
 }
 
@@ -26,4 +28,8 @@ input {
   padding: 5px 5px;
   width: calc(100% - 12px);
   border: 1px gray solid;
+}
+
+mat-spinner{
+  margin: 0 auto;
 }

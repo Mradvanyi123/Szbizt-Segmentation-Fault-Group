@@ -7,13 +7,13 @@ export class PictureDto{
     constructor(
         public id:string,
         public user:User,
-        public pictureName:string,
+        public name:string,
         public content:Byte[],
         public comments:CommentDto[]
     ){}
 
     public toModel():Post{
-        return new Post(this.id,this.pictureName,this.user.username,this.content, this.comments.map((c)=>{return {text:c.comment, userName:c.user.username};}));
+        return new Post(this.id,this.name,this.user.username,this.content, this.comments.map((c)=>{return {text:c.comment, userName:c.user.username};}));
     }
 
 }

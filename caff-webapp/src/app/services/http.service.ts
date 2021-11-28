@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { CommentDto } from '../structures/CommentDto';
 import { PictureDto } from '../structures/PictureDto';
+import { Post } from '../structures/Post';
 import { Roles, User } from '../structures/User';
 import { AuthService } from './auth.service';
 
@@ -16,14 +18,18 @@ export class HttpService {
   async login(username:string, password:string):Promise<User>{
     try{
       let token = await this.http.post<{token:string}>(this.basePath+'login',{username:username, password:password}).toPromise();
-      let user = await this.http.get<User>(this.basePath+'user', {headers: new HttpHeaders().set('Authorization', `Bearer ${token.token}`)}).toPromise();
       AuthService.token = token.token;
+      let user = await this.http.get<User>(this.basePath+'user', {headers: this.addAuthHeader()}).toPromise();
       if(user.role.toString()==='USER')user.role=Roles.USER 
       else user.role=Roles.ADMIN;
       return user;
     }catch(error:any){
       throw error;
     }
+  }
+
+  private addAuthHeader = ():HttpHeaders=>{
+    return new HttpHeaders().set('Authorization', `Bearer ${AuthService.token}`)
   }
 
   async logout(){
@@ -47,18 +53,24 @@ export class HttpService {
     console.log(r);
   }
 
-  async getPictures(keyword:string){
-    let params:HttpParams|undefined;
-    // if(keyword!==''){
-    //   params= 
-    // }
-    let r = await this.http.get<PictureDto>(this.basePath+'picture', ).toPromise();
-    console.log(r);
+  async getPictures():Promise<Post[]>{
+    let r = await this.http.get<PictureDto[]>(this.basePath+'picture',{headers: this.addAuthHeader()} ).toPromise();
+    let posts:Post[] = r.map(r=>new Post(r.id,r.name,r.user.username,r.content, r.comments.map((c)=>{return {text:c.comment, userName:c.user.username};})));
+    return posts;
   }
 
-  async postPicture(){
-    let r = await this.http.post<PictureDto>(this.basePath+'picture',PictureDto).toPromise();
-    console.log(r);
+  async searchPictures(keyword:string):Promise<Post[]>{
+    let r = await this.http.get<PictureDto[]>(this.basePath+'picture',{headers: this.addAuthHeader(), params:{'name':keyword}}).toPromise();
+    let posts:Post[] = r.map(r=>new Post(r.id,r.name,r.user.username,r.content, r.comments.map((c)=>{return {text:c.comment, userName:c.user.username};})));
+    return posts;
+  }
+
+  async postPicture(title:string, content:Byte[]|null):Promise<PictureDto>{
+    try {
+      return await this.http.post<PictureDto>(this.basePath+'picture',{name:title,content:content}, {headers:this.addAuthHeader()}).toPromise();
+    } catch (error:any) {
+      throw error;
+    }
   }
 
   async postComment(postId:string){
@@ -72,6 +84,7 @@ export class HttpService {
   }
 
   public handleError(error:any):string{
+    console.log(error);
     if(error instanceof HttpErrorResponse){
       if(error.status===403){
         return 'Incorrect username or password'

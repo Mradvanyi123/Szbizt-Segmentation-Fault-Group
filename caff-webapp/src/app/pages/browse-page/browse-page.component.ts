@@ -15,8 +15,10 @@ export class BrowsePageComponent implements OnInit {
     this.loadPosts();
   }
 
-  loadPosts():void{
-    this.pictureService.getFileList();
+  async loadPosts():Promise<void>{
+    this.pictureService.isLoading=true;
+    await this.pictureService.getFileList();
+    this.pictureService.isLoading=false;
   }
 
 }

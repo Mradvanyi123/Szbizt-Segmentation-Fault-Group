@@ -13,7 +13,11 @@ export class PostAddComponent implements OnInit {
   file: File | null = null;
 
   title:string = '';
-  constructor(public dialogRef: MatDialogRef<PostAddComponent>, private pictureService:PictureHandlerService) { }
+
+  errorMsg:string = '';
+
+  isLoading:boolean = false;
+  constructor(public dialogRef: MatDialogRef<PostAddComponent>, public pictureService:PictureHandlerService) { }
 
   ngOnInit(): void {
   }
@@ -31,10 +35,13 @@ export class PostAddComponent implements OnInit {
     if(files) this.file = files[0];
   }
 
-  onUpload():void{
+  async onUpload():Promise<void>{
     if(this.file && this.title!==''){
-      this.pictureService.uploadFile(this.title, this.file.name);
+      this.isLoading=true;
+      this.errorMsg = await this.pictureService.uploadFile(this.title, this.file.name);
+      if(this.errorMsg==='')
       this.onNoClick();
+      this.isLoading=false;
     }
   }
 

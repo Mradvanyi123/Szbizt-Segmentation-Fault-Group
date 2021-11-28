@@ -13,20 +13,37 @@ export class PictureHandlerService {
 
   posts:Post[] = MOCK_POSTS;
 
-  uploadFile(title:string, fileBytes:string){
-    //TODO HTTP service
-    this.posts.unshift({id:Math.floor(Math.random() * 9999).toString(), img:fileBytes, title:title, userName:AuthService.loggedInUser!.username, comments:[] });
+  isLoading:boolean = false;
+
+  async uploadFile(title:string, fileBytes:string):Promise<string>{
+    await new Promise(f => setTimeout(f, 1000));
+    try {
+      let newPost = await this.httpService.postPicture(title, null);
+      this.posts.unshift({id:newPost.id,
+        img:'image content here', 
+        title:newPost.name, 
+        userName:newPost.user.username,
+        comments:newPost.comments?newPost.comments.map(c=>{return {text:c.comment, userName:c.user.username};}):[]
+      });
+      return '';
+    } catch (error:any) {
+      let msg = this.httpService.handleError(error);
+      console.error(msg);
+      return msg;
+    }
+
   }
 
   async getFileList():Promise<void>{
     //HTTP get all pictures
-    //this.httpService.getPictures('');
-    this.posts = MOCK_POSTS;
+    //await new Promise(f => setTimeout(f, 1000));
+    this.posts = await this.httpService.getPictures();
+    //this.posts = MOCK_POSTS;
     //return this.posts
   }
 
-  searchPost(keyword:string):void{
-    this.posts = MOCK_POSTS.filter((p)=>p.title.toLowerCase().includes(keyword.toLowerCase()));
+  async searchPost(keyword:string):Promise<void>{
+    this.posts = await this.httpService.searchPictures(keyword);
   }
 
   async addComment(postId:string, comment:IComment):Promise<void>{

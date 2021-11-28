@@ -1,4 +1,6 @@
-<div>
+<div *ngIf="!pictureService.isLoading">
   <app-post *ngFor="let post of pictureService.posts" [post]="post"></app-post>
   <div *ngIf="pictureService.posts.length===0"><i>No post found</i></div>
 </div>
+
+<mat-spinner *ngIf="pictureService.isLoading" [diameter]="40"></mat-spinner>

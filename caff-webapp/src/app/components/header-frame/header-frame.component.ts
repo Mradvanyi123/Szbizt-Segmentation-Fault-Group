@@ -58,8 +58,10 @@ export class HeaderFrameComponent implements OnInit {
     this.router.navigate(['signin']);
   }
 
-  onSearchSubmit(value:string):void{
-     this.pictureService.searchPost(value);
+  async onSearchSubmit(value:string):Promise<void>{
+    this.pictureService.isLoading = true;
+    await this.pictureService.searchPost(value);
+    this.pictureService.isLoading = false;
   }
 
 }
