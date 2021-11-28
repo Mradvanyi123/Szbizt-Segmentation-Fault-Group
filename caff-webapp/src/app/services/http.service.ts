@@ -32,7 +32,7 @@ export class HttpService {
     // if(keyword!==''){
     //   params= 
     // }
-    let r = await this.http.get<PictureDto>(this.basePath+'picture', {params:{name:keyword}}).toPromise();
+    let r = await this.http.get<PictureDto>(this.basePath+'picture', ).toPromise();
     console.log(r);
   }
 

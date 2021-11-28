@@ -20,7 +20,7 @@ export class PictureHandlerService {
 
   async getFileList():Promise<void>{
     //HTTP get all pictures
-    this.httpService.getPictures('');
+    //this.httpService.getPictures('');
     this.posts = MOCK_POSTS;
     //return this.posts
   }
