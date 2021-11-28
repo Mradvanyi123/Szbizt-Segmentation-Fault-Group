@@ -38,7 +38,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/picture/c2b74058-de55-4126-9620-bb0e2f8ec4c3",
+					"raw": "http://localhost:8080/api/picture/22ada12d-fbd0-4a78-9dfa-e82b86c1d668",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -47,14 +47,7 @@
 					"path": [
 						"api",
 						"picture",
-						"c2b74058-de55-4126-9620-bb0e2f8ec4c3"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "fű",
-							"disabled": true
-						}
+						"22ada12d-fbd0-4a78-9dfa-e82b86c1d668"
 					]
 				}
 			},
