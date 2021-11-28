@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommentDto } from '../structures/CommentDto';
-import { PictureDto } from '../structures/PictureDto';
+import { PictureDto, userDto } from '../structures/PictureDto';
 import { User } from '../structures/User';
 
 @Injectable({
@@ -13,8 +13,10 @@ export class HttpService {
   constructor(private http:HttpClient) { }
 
   async login(username:string, password:string){
-    let r = await this.http.post<User>(this.basePath+'user/login',{username:username, password:password}).toPromise();
-    console.log(r);
+    let token = await this.http.post<{token:string}>(this.basePath+'login',{username:username, password:password}).toPromise();
+    console.log(token);
+    let user = await this.http.get<string>(this.basePath+'user', {headers: new HttpHeaders().set('Authorization', `Bearer ${token.token}`)}).toPromise();
+    console.log(user);
   }
 
   async register(username:string,email:string, password:string){

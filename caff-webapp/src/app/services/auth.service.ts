@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Roles, User } from '../structures/User';
+import { HttpService } from './http.service';
 import { MOCK_USERS } from './mock';
 
 @Injectable({
@@ -14,10 +15,10 @@ export class AuthService {
     return this.loggedInUser!==undefined && this.loggedInUser!== null;
   }
 
-  constructor() { }
+  constructor(private httpService:HttpService) { }
 
   async login(username:string, password:string):Promise<User>{
-    //http request
+    this.httpService.login(username, password);
     this.loggedInUser = MOCK_USERS[1];
     return this.loggedInUser;;
   }
