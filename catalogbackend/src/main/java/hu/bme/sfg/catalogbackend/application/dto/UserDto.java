@@ -26,4 +26,7 @@ public class UserDto {
     @NotEmpty
     @NotBlank
     private String email;
+
+    @JsonProperty("role")
+    private String role;
 }
