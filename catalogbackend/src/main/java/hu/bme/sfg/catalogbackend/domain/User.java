@@ -1,5 +1,6 @@
 package hu.bme.sfg.catalogbackend.domain;
 
+import hu.bme.sfg.catalogbackend.util.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,6 +28,12 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private Role role;
+
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Picture> pictures;
 
@@ -36,6 +43,8 @@ public class User {
     private User(UserBuilder userBuilder) {
         this.userName = userBuilder.userName;
         this.email = userBuilder.email;
+        this.password = userBuilder.password;
+        this.role = userBuilder.role == null ? Role.USER : userBuilder.role;
         this.pictures = userBuilder.pictures;
         this.comments = userBuilder.comments;
     }

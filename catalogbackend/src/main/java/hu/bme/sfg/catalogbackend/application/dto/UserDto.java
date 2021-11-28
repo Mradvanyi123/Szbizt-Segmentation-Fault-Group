@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public final class UserDto {
+public class UserDto {
 
     @JsonProperty("id")
     private UUID id;
