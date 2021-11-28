@@ -2,17 +2,24 @@ package hu.bme.sfg.catalogbackend.application.controller;
 
 import hu.bme.sfg.catalogbackend.application.dto.CommentDto;
 import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
+import hu.bme.sfg.catalogbackend.application.service.CaffService;
 import hu.bme.sfg.catalogbackend.application.service.PictureHandlerService;
+import hu.bme.sfg.catalogbackend.domain.Caff;
+import hu.bme.sfg.catalogbackend.domain.CaffFile;
 import hu.bme.sfg.catalogbackend.util.PictureException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +29,9 @@ import java.util.UUID;
 public class PictureController {
 
     private PictureHandlerService pictureHandlerService;
+
+    @Autowired
+    private CaffService caffService;
 
     @GetMapping
     public ResponseEntity<List<PictureDto>> getAllPictures(@RequestParam(required = false) String name) {
@@ -48,6 +58,16 @@ public class PictureController {
         } catch (PictureException e) {
             return ResponseEntity.badRequest().build(); //TODO
         }
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<Caff> uploadCaff(@RequestParam("fileKey") MultipartFile file) throws ParseException, IOException {
+        System.out.println("CAFF file upload started: " + file.getName() + " size: " + file.getSize());
+            CaffFile caffFile = new CaffFile();
+            caffFile.setData(file.getBytes());
+
+            return ResponseEntity.status(HttpStatus.OK).body(caffService.uploadCaff(caffFile));
+
     }
 
     @PostMapping("/{id}/comment")
