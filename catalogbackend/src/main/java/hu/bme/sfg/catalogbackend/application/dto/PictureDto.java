@@ -25,9 +25,9 @@ public class PictureDto {
     @JsonProperty("user")
     private UserDto user;
 
-    @JsonProperty("comments")
-    List<CommentDto> comments;
-
     @JsonProperty("content")
     private byte[] content;
+
+    @JsonProperty("comments")
+    List<CommentDto> comments;
 }

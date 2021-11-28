@@ -18,13 +18,8 @@ public class CommentDto {
 
     @NotBlank
     @NotEmpty
-    @JsonProperty("picture_id")
-    private UUID pictureId;
-
-    @NotBlank
-    @NotEmpty
-    @JsonProperty("user_id")
-    private UUID userId;
+    @JsonProperty("user")
+    private UserDto user; //TODO az auth miatt ez nem fog kelleni
 
     @NotEmpty
     @NotBlank

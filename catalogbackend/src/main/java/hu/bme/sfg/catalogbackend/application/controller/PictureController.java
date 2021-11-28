@@ -29,21 +29,30 @@ public class PictureController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getPicture(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(pictureHandlerService.getPicture(id));
+        } catch (PictureException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Picture doesn't exists");
+        }
+    }
+
     @PostMapping
     public ResponseEntity<PictureDto> createPicture(@Valid @RequestBody PictureDto pictureDto) {
         try {
             return ResponseEntity.ok(pictureHandlerService.createPicture(pictureDto));
         } catch (PictureException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build(); //TODO
         }
     }
 
     @PostMapping("/{id}/comment")
-    public ResponseEntity<CommentDto> postComment(@Valid @RequestBody CommentDto commentDto, @PathVariable("id") UUID pictureId) {
+    public ResponseEntity<Object> postComment(@Valid @RequestBody CommentDto commentDto, @PathVariable("id") UUID pictureId) {
         try {
             return ResponseEntity.ok(pictureHandlerService.postComment(pictureId, commentDto));
         } catch (PictureException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Picture doesn't exists");
         }
     }
 

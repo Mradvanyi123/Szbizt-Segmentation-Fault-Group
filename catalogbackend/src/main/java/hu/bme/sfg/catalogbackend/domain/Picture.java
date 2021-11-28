@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,6 +38,13 @@ public class Picture {
         this.name = pictureBuilder.name;
         this.content = pictureBuilder.content;
         this.comments = pictureBuilder.comments;
+    }
+
+    public void addComment(Comment comment) {
+        if (this.comments == null) {
+            this.comments = new ArrayList<>();
+        }
+        this.comments.add(comment);
     }
 
     public static class PictureBuilder {

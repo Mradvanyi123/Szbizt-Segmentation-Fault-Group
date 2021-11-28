@@ -12,6 +12,8 @@ public interface PictureHandlerService {
 
     List<PictureDto> getAllPicturesWithNameFilter(String name);
 
+    PictureDto getPicture(UUID pictureId) throws PictureException;
+
     PictureDto createPicture(PictureDto pictureDto) throws PictureException;
 
     CommentDto postComment(UUID pictureId, CommentDto commentDto) throws PictureException;
