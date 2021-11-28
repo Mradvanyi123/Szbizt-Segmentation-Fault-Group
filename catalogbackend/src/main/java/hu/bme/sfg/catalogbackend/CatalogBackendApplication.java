@@ -48,13 +48,11 @@ public class CatalogBackendApplication implements CommandLineRunner {
                 .email("anne@email.hu")
                 .userName("anne")
                 .password(passwordEncoder.encode("password"))
-                //.role(Role.USER)
                 .build();
         User userPeter = User.builder()
                 .email("peter@email.hu")
                 .userName("peter")
                 .password(passwordEncoder.encode("password"))
-                //.role(Role.USER)
                 .build();
 
         userRepository.saveAll(Arrays.asList(userAdmin, userAnne, userPeter));

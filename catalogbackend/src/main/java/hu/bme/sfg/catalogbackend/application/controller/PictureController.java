@@ -52,7 +52,7 @@ public class PictureController {
         try {
             return ResponseEntity.ok(pictureHandlerService.postComment(pictureId, commentDto));
         } catch (PictureException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Picture doesn't exists");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
@@ -62,7 +62,7 @@ public class PictureController {
             pictureHandlerService.deletePicture(pictureId);
             return ResponseEntity.ok().build();
         } catch (PictureException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Picture doesn't exists");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 }
