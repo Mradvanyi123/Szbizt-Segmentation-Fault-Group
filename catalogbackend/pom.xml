@@ -104,4 +104,13 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>h2</id>
+			<properties>
+				<active.profile>h2</active.profile>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>
