@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -16,8 +18,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id = UUID.randomUUID();
 
     @Column(nullable = false, unique = true)
     private String userName;
@@ -25,10 +26,17 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true,  fetch = FetchType.EAGER)
+    private List<Picture> pictures;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Comment> comments;
 
     private User(UserBuilder userBuilder) {
         this.userName = userBuilder.userName;
         this.email = userBuilder.email;
+        this.pictures = userBuilder.pictures;
+        this.comments = userBuilder.comments;
     }
 
     public static class UserBuilder {

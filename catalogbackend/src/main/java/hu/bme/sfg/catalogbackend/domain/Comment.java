@@ -5,7 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -15,21 +19,20 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id = UUID.randomUUID();
 
-    @Column(nullable = false)
-    private Long pictureId;
+    @ManyToOne
+    private Picture picture;
 
-    @Column(nullable = false)
-    private Long userId;
+    @ManyToOne
+    private User user;
 
     @Column(nullable = false)
     private String comment;
 
     private Comment(Comment.CommentBuilder commentBuilder) {
-        this.pictureId = commentBuilder.pictureId;
-        this.userId = commentBuilder.userId;
+        this.picture = commentBuilder.picture;
+        this.user = commentBuilder.user;
         this.comment = commentBuilder.comment;
     }
 

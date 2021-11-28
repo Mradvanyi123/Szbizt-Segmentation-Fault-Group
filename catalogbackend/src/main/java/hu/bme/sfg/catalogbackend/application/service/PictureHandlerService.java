@@ -5,6 +5,7 @@ import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
 import hu.bme.sfg.catalogbackend.util.PictureException;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface PictureHandlerService {
     List<PictureDto> getAllPictures();
@@ -13,7 +14,7 @@ public interface PictureHandlerService {
 
     PictureDto createPicture(PictureDto pictureDto) throws PictureException;
 
-    CommentDto postComment(Long pictureId, CommentDto commentDto) throws PictureException;
+    CommentDto postComment(UUID pictureId, CommentDto commentDto) throws PictureException;
 
-    Boolean deletePicture(Long pictureId) throws PictureException;
+    void deletePicture(UUID pictureId) throws PictureException;
 }

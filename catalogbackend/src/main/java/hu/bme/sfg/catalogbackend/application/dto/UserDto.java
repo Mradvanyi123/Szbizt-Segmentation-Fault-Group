@@ -6,6 +6,7 @@ import lombok.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 public final class UserDto {
 
     @JsonProperty("id")
-    private Long id;
+    private UUID id;
 
     @NotBlank
     @NotEmpty(message = "username must not be blank")
