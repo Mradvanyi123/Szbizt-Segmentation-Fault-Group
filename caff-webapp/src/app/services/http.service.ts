@@ -37,12 +37,12 @@ export class HttpService {
     console.log(r);
   }
 
-  async postComment(postId:number){
+  async postComment(postId:string){
     let r = await this.http.post<CommentDto>(this.basePath+`picture/${postId}/comment`,CommentDto).toPromise();
     console.log(r);
   }
 
-  async deltePicture(postId:number){
+  async deltePicture(postId:string){
     let r = await this.http.delete<object>(this.basePath+`picture/${postId}`).toPromise();
     console.log(r);
   }

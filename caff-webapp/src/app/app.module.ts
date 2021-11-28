@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostAddComponent } from './components/post-page/post-add.component';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { BrowsePageComponent } from './pages/browse-page/browse-page.component';
 import { HeaderFrameComponent } from './components/header-frame/header-frame.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -31,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
     PostAddComponent,
     SignInPageComponent,
     SignUpPageComponent,
-    ProfilePageComponent,
     BrowsePageComponent,
     HeaderFrameComponent,
     PostComponent,

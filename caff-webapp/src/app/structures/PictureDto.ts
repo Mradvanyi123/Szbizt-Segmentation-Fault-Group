@@ -3,7 +3,7 @@ import { Post } from "./Post";
 
 export class PictureDto{
     constructor(
-        public id:number,
+        public id:string,
         public userName:string,
         public pictureName:string,
         public content:Byte[]

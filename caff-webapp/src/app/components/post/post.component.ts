@@ -11,7 +11,7 @@ import { Roles } from 'src/app/structures/User';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post:Post ={id:0,title:'', img:'', userName:'', comments:[]}
+  @Input() post:Post ={id:'0',title:'', img:'', userName:'', comments:[]}
   titleIsEdit:boolean = false;
 
   constructor(private pictureService:PictureHandlerService, public authService:AuthService) { }

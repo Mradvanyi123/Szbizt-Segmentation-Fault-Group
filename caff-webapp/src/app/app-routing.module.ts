@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';import { CanActivateAdmin
 import { HeaderFrameComponent } from './components/header-frame/header-frame.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { BrowsePageComponent } from './pages/browse-page/browse-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 ;
@@ -14,7 +13,6 @@ const routes: Routes = [
   {path:'signup', component:SignUpPageComponent},
   {path:'auth', component:HeaderFrameComponent,children:[
     {path:'home', component:BrowsePageComponent, canActivate:[CanActivateRoute]},
-    {path:'profile', component:ProfilePageComponent, canActivate:[CanActivateRoute]},
     {path:'users', component:UserListComponent, canActivate:[CanActivateRoute, CanActivateAdmin]}
   ]
 }
