@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PictureDto } from '../structures/PictureDto';
 import { IComment, Post } from '../structures/Post';
 import { AuthService } from './auth.service';
 import { HttpService } from './http.service';
@@ -47,7 +48,7 @@ export class PictureHandlerService {
   }
 
   async addComment(postId:string, comment:IComment):Promise<void>{
-    await new Promise(f => setTimeout(f, 1000));
+    //await new Promise(f => setTimeout(f, 1000));
     try {
       let newComment:IComment = await this.httpService.postComment(postId, comment.text);
       this.posts.find(p=>p.id===postId)?.comments.push(newComment);
@@ -58,9 +59,14 @@ export class PictureHandlerService {
   }
 
   async editTitle(postId:string, newTitle:string):Promise<void>{
-    let post:Post|undefined = this.posts.find(p=>p.id===postId);
-    if(post)
-      post.title = newTitle;
+    try {
+      let pic:PictureDto = await this.httpService.editPictureName(newTitle, postId);
+      let post:Post|undefined = this.posts.find(p=>p.id===pic.id);
+      if(post)
+        post.title = pic.name;
+    } catch (error:any) {
+      this.httpService.handleError(error);
+    }
   }
 
   async deletePost(postId:string):Promise<void>{

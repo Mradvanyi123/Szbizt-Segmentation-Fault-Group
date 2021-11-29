@@ -112,6 +112,21 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
         }
     }
 
+    @Override
+    public PictureDto editPictureName(String newName, UUID pictureId) throws PictureException {
+        Optional<Picture> pic = pictureRepositroy.findById(pictureId);
+        if (pic.isPresent()) {
+            Picture newPic = pic.get();
+            newPic.setName(newName);
+            pictureRepositroy.save(newPic);
+            log.info("New name of the picture is: "+newName);
+            return pictureMapper.pictureToPictureDto(newPic);
+        } else {
+            log.error("Picture doesn't exists");
+            throw new PictureException("Picture doesn't exists");
+        }
+    }
+
     public byte[] getPicture(byte[] pictureContent) {
         log.info("CAFF file is parsed");
         return null;

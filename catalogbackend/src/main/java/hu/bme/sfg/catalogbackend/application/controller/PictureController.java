@@ -50,6 +50,16 @@ public class PictureController {
         }
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PutMapping("/{id}")
+    public ResponseEntity<PictureDto> editPictureName(@PathVariable UUID id, @Valid @RequestBody String newName) {
+        try {
+            return ResponseEntity.ok(pictureHandlerService.editPictureName(newName, id));
+        } catch (PictureException e) {
+            return ResponseEntity.badRequest().build(); //TODO
+        }
+    }
+
     @PostMapping("/{id}/comment")
     public ResponseEntity<Object> postComment(@Valid @RequestBody CommentDto commentDto, @PathVariable("id") UUID pictureId, Principal principal) {
         try {

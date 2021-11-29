@@ -75,6 +75,7 @@ public class CatalogBackendApplication implements CommandLineRunner {
         Picture pictureGrass = Picture.builder()
                 .name("Zöld fű")
                 .content(null)
+                .user(userPeter)
                 .build();
 
         pictureRepositroy.saveAll(Arrays.asList(pictureFlower, pictureDog, pictureSky, pictureGrass));

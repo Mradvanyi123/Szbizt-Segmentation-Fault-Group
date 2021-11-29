@@ -17,6 +17,8 @@ public interface PictureHandlerService {
 
     PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException;
 
+    PictureDto editPictureName(String newName, UUID pictureId) throws PictureException;
+
     CommentDto postComment(UUID pictureId, CommentDto commentDto, Principal principal) throws PictureException;
 
     void deletePicture(UUID pictureId) throws PictureException;

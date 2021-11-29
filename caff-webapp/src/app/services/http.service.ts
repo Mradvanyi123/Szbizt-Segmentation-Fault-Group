@@ -81,6 +81,14 @@ export class HttpService {
     }
   }
 
+  async editPictureName(newTitle:string, pictureId:string):Promise<PictureDto>{
+    try {
+      return await this.http.put<PictureDto>(this.basePath+`picture/${pictureId}`,newTitle, {headers:this.addAuthHeader()}).toPromise();
+    } catch (error:any) {
+      throw error;
+    }
+  }
+
   async postComment(postId:string, text:string):Promise<IComment>{
     let r = await this.http.post<CommentDto>(this.basePath+`picture/${postId}/comment`,{comment:text}, {headers: this.addAuthHeader()}).toPromise();
     return {text:r.comment, userName:r.user.username};
