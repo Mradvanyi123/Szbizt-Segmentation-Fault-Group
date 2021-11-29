@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -44,5 +46,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getMyInfo(Principal principal){
         return userMapper.userToUserDto(userRepository.findByUserName(principal.getName()).get());
+    }
+
+    @Override
+    public List<UserDto> getAll(){
+        List<User> users = userRepository.findAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user : users) {
+            userDtos.add(userMapper.userToUserDto(user));
+        }
+        return userDtos;
     }
 }

@@ -44,6 +44,6 @@ export class AuthService {
   }
 
   async getUsers():Promise<User[]>{
-    return MOCK_USERS;
+    return this.httpService.getUsers();
   }
 }

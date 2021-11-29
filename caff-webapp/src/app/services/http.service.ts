@@ -48,9 +48,17 @@ export class HttpService {
     }
   }
 
-  async getUsers(){
-    let r = await this.http.get<User[]>(this.basePath+'user').toPromise();
-    console.log(r);
+  async getUsers():Promise<User[]>{
+    try {
+      let r = await this.http.get<User[]>(this.basePath+'user/all', {headers:this.addAuthHeader()}).toPromise();
+      r.forEach(user => {
+        if(user.role.toString()==='USER')user.role=Roles.USER 
+        else user.role=Roles.ADMIN;
+      });
+      return r;
+    } catch (error:any) {
+      throw error;
+    }
   }
 
   async getPictures():Promise<Post[]>{
