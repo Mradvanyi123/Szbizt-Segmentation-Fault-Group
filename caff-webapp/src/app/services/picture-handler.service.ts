@@ -16,7 +16,7 @@ export class PictureHandlerService {
   isLoading:boolean = false;
 
   async uploadFile(title:string, fileBytes:string):Promise<string>{
-    await new Promise(f => setTimeout(f, 1000));
+    //await new Promise(f => setTimeout(f, 1000));
     try {
       let newPost = await this.httpService.postPicture(title, null);
       this.posts.unshift({id:newPost.id,
@@ -47,7 +47,14 @@ export class PictureHandlerService {
   }
 
   async addComment(postId:string, comment:IComment):Promise<void>{
-    this.posts.find(p=>p.id===postId)?.comments.push(comment);
+    await new Promise(f => setTimeout(f, 1000));
+    try {
+      let newComment:IComment = await this.httpService.postComment(postId, comment.text);
+      this.posts.find(p=>p.id===postId)?.comments.push(newComment);
+    } catch (error:any) {
+      this.httpService.handleError(error);
+    }
+    
   }
 
   async editTitle(postId:string, newTitle:string):Promise<void>{
@@ -57,6 +64,11 @@ export class PictureHandlerService {
   }
 
   async deletePost(postId:string):Promise<void>{
+    try {
+      await this.httpService.deltePicture(postId);
+    } catch (error:any) {
+      this.httpService.handleError(error);
+    }
     let idx:number = this.posts.findIndex(p=>p.id===postId);
     this.posts.splice(idx,1);
   }

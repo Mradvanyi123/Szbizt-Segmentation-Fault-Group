@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
 
   constructor(private pictureService:PictureHandlerService, public authService:AuthService) { }
 
-
+  isLoading:boolean=false;
 
   get isAdmin(){
     return AuthService.loggedInUser?.role===Roles.ADMIN;
@@ -26,7 +26,9 @@ export class PostComponent implements OnInit {
   }
 
   async onAddComment(target:HTMLInputElement):Promise<void>{
+    this.isLoading=true;
     await this.pictureService.addComment(this.post.id,{userName:AuthService.loggedInUser!.username, text:target.value});
+    this.isLoading=false;
     target.value='';
     target.blur();
   }
@@ -45,8 +47,10 @@ export class PostComponent implements OnInit {
     this.titleIsEdit=true;
   }
 
-  onDelete():void{
-    this.pictureService.deletePost(this.post.id);
+  async onDelete():Promise<void>{
+
+    await this.pictureService.deletePost(this.post.id);
+
   }
 
 }

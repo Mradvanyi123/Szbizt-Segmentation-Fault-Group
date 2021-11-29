@@ -3,7 +3,7 @@ import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { CommentDto } from '../structures/CommentDto';
 import { PictureDto } from '../structures/PictureDto';
-import { Post } from '../structures/Post';
+import { Post, IComment } from '../structures/Post';
 import { Roles, User } from '../structures/User';
 import { AuthService } from './auth.service';
 
@@ -73,14 +73,17 @@ export class HttpService {
     }
   }
 
-  async postComment(postId:string){
-    let r = await this.http.post<CommentDto>(this.basePath+`picture/${postId}/comment`,CommentDto).toPromise();
-    console.log(r);
+  async postComment(postId:string, text:string):Promise<IComment>{
+    let r = await this.http.post<CommentDto>(this.basePath+`picture/${postId}/comment`,{comment:text}, {headers: this.addAuthHeader()}).toPromise();
+    return {text:r.comment, userName:r.user.username};
   }
 
   async deltePicture(postId:string){
-    let r = await this.http.delete<object>(this.basePath+`picture/${postId}`).toPromise();
-    console.log(r);
+    try {
+      await this.http.delete(this.basePath+`picture/${postId}`, {headers:this.addAuthHeader()}).toPromise();
+    } catch (error:any) {
+      throw error;
+    }
   }
 
   public handleError(error:any):string{

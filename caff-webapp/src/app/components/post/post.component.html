@@ -27,8 +27,12 @@
       <div>{{comment.text}}</div>
     </div>
 
+    <div style="margin: 10px 20px;">
+      <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+    </div>
 
-    <mat-form-field appearance="outline">
+
+    <mat-form-field appearance="outline" class="comment-input">
       <mat-label>Add comment</mat-label>
       <input matInput #input (keydown.enter)="onAddComment(input)"/>
     </mat-form-field>
