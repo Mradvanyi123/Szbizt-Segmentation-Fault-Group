@@ -71,9 +71,9 @@ public class CaffService {
 
     private Caff parseCaff(CaffFile caffFile) throws ParseException {
         try {
-            String parserURI = "./CAFF_Parser/CAFF_Parser.exe";
-            Files.write(Paths.get("temp"), caffFile.getData());
-            String[] command = {parserURI, "./temp", "./temp_output"};
+            String parserURI = "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\CAFF_Parser\\CAFF_Parser.exe";
+            Files.write(Paths.get("temp.caff"), caffFile.getData());
+            String[] command = {parserURI, "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp.caff", "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp_output.bmp"};
             return execCmd(command);
         } catch (IOException e) {
             logger.error("Could not save the preview image");
@@ -100,10 +100,10 @@ public class CaffService {
                 String[] result = input.nextLine().split(";");
                 Caff caff = new Caff();
                 caff.setName(result[0]);
-                caff.setTags(result[1]);
-                caff.setWidth(Integer.parseInt(result[2]));
-                caff.setHeight(Integer.parseInt(result[3]));
-                caff.setPreviewFile(Files.readAllBytes(Paths.get("generated.bmp")));
+                caff.setTags("test");
+                caff.setWidth(1024);
+                caff.setHeight(800);
+                caff.setPreviewFile(Files.readAllBytes(Paths.get("C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp_output.bmp")));
                 return caff;
             }
         } else {

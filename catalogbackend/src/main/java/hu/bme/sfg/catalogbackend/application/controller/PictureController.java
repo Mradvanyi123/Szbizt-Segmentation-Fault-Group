@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,10 +62,10 @@ public class PictureController {
     @PostMapping("/upload")
     public ResponseEntity<Caff> uploadCaff(@RequestParam("fileKey") MultipartFile file) throws ParseException, IOException {
         System.out.println("CAFF file upload started: " + file.getName() + " size: " + file.getSize());
-            CaffFile caffFile = new CaffFile();
-            caffFile.setData(file.getBytes());
+        CaffFile caffFile = new CaffFile();
+        caffFile.setData(file.getBytes());
 
-            return ResponseEntity.status(HttpStatus.OK).body(caffService.uploadCaff(caffFile));
+        return ResponseEntity.status(HttpStatus.OK).body(caffService.uploadCaff(caffFile));
 
     }
 

@@ -1,0 +1,23 @@
+[11/29/21 00:53:32 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 00:55:28 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 00:57:59 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:00:33 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:00:33 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/29/21 01:00:37 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/29/21 01:00:37 Közép-európai téli idõ ] [INFO] [main] Program ended
+[11/29/21 01:03:45 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:03:45 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/29/21 01:03:54 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/29/21 01:03:54 Közép-európai téli idõ ] [INFO] [main] Program ended
+[11/29/21 01:06:22 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:06:22 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/29/21 01:06:29 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/29/21 01:06:29 Közép-európai téli idõ ] [INFO] [main] Program ended
+[11/29/21 01:09:52 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:09:52 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/29/21 01:09:58 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/29/21 01:09:58 Közép-európai téli idõ ] [INFO] [main] Program ended
+[11/29/21 01:16:27 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/29/21 01:16:27 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/29/21 01:16:34 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/29/21 01:16:34 Közép-európai téli idõ ] [INFO] [main] Program ended
