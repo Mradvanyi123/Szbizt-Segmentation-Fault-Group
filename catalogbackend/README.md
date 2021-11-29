@@ -10,7 +10,7 @@
 ## Használat
 ***1. H2 in-memory adatbázissal***
 
-Mivel lokális H2 adatbázist használunk, így nincs szükség semmilyen setup-ra. Elérni a futtatás indítása után a http://localhost:8080/api/h2-console url-en lehet elérni.
+Mivel lokális H2 adatbázist használunk, így nincs szükség semmilyen setup-ra. Elérni a futtatás indítása után a [http://localhost:8080/api/h2-console](http://localhost:8080/api/h2-console) url-en lehet elérni.
 *A JDBC url, username és a password elérhetőek az application-h2.properties fájlban.*
 
 **Fordítás**

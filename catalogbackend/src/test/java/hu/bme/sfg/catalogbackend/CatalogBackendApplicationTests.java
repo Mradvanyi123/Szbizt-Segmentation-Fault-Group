@@ -1,19 +1,25 @@
 package hu.bme.sfg.catalogbackend;
 
-import org.junit.jupiter.api.BeforeEach;
+import hu.bme.sfg.catalogbackend.application.dto.RegisterDto;
+import hu.bme.sfg.catalogbackend.application.service.PictureHandlerService;
+import hu.bme.sfg.catalogbackend.application.service.UserService;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.*;
-import org.mockito.Mockito;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+@AllArgsConstructor
 @SpringBootTest
 class CatalogBackendApplicationTests {
-    @BeforeEach
-    public void init() {
-    }
+
+    private PictureHandlerService pictureHandlerService;
+    private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Test
     void getAllPicturesTest() {
+
     }
 
     @Test
@@ -32,5 +38,19 @@ class CatalogBackendApplicationTests {
     void deletePictureTest() {
     }
 
+    //user services
+    @Test
+    void registerTest() {
+//        RegisterDto registerDto = RegisterDto.builder()
+//                .email("peter@email.hu")
+//                .userName("peter")
+//                .password(passwordEncoder.encode("asdadad"))
+//                .build();
+    }
+
+    @Test
+    void getMyInfoTest() {
+
+    }
 
 }
