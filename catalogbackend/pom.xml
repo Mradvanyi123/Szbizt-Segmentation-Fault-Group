@@ -135,9 +135,9 @@
 
 	<profiles>
 		<profile>
-			<id>h2</id>
+			<id>postgresql</id>
 			<properties>
-				<active.profile>h2</active.profile>
+				<active.profile>postgresql</active.profile>
 			</properties>
 		</profile>
 	</profiles>

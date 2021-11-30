@@ -1,6 +1,5 @@
 package hu.bme.sfg.catalogbackend.security;
 
-import hu.bme.sfg.catalogbackend.util.Role;
 import hu.bme.sfg.catalogbackend.domain.User;
 import hu.bme.sfg.catalogbackend.repository.UserRepository;
 import io.jsonwebtoken.Claims;
@@ -32,7 +31,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     private final String jwtType;
     private final String jwtAudience;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public JwtAuthorizationFilter(AuthenticationManager authenticationManager, String jwtAudience, String jwtIssuer, String jwtSecret, String jwtType, UserRepository userRepository) {
         super(authenticationManager);
