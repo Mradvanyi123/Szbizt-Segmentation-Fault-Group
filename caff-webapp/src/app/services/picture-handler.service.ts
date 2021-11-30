@@ -11,18 +11,17 @@ import { MOCK_POSTS } from './mock';
 })
 export class PictureHandlerService {
 
-  constructor(private sanitizer: DomSanitizer, private httpService:HttpService) { }
+  constructor(private httpService:HttpService) { }
 
   posts:Post[] = MOCK_POSTS;
 
   isLoading:boolean = false;
 
   async uploadFile(title:string, file:File):Promise<string>{
-    //await new Promise(f => setTimeout(f, 1000));
     try {
       let newPost = await this.httpService.postPicture(title, file);
       this.posts.unshift({id:newPost.id,
-        img:btoa(newPost.content), //this.sanitizer.bypassSecurityTrustUrl(objectURL), 
+        img:newPost.content, 
         title:newPost.name, 
         userName:newPost.user.username,
         comments:newPost.comments?newPost.comments.map(c=>{return {text:c.comment, userName:c.user.username};}):[]
@@ -30,7 +29,6 @@ export class PictureHandlerService {
       return '';
     } catch (error:any) {
       let msg = this.httpService.handleError(error);
-      console.error(msg);
       return msg;
     }
 

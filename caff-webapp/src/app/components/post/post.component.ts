@@ -1,8 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { PictureHandlerService } from 'src/app/services/picture-handler.service';
 import { Post } from 'src/app/structures/Post';
 import { Roles } from 'src/app/structures/User';
+import { FullImageDisplayComponent } from '../full-image-display/full-image-display.component';
+
+export interface FullImageDialogData {
+  title: string;
+  imageData: string;
+}
 
 @Component({
   selector: 'app-post',
@@ -14,7 +21,7 @@ export class PostComponent implements OnInit {
   @Input() post:Post ={id:'0',title:'', img:'', userName:'', comments:[]}
   titleIsEdit:boolean = false;
 
-  constructor(private pictureService:PictureHandlerService, public authService:AuthService) { }
+  constructor(private pictureService:PictureHandlerService, public authService:AuthService, public dialog:MatDialog) { }
 
   isLoading:boolean=false;
 
@@ -48,9 +55,13 @@ export class PostComponent implements OnInit {
   }
 
   async onDelete():Promise<void>{
-
     await this.pictureService.deletePost(this.post.id);
+  }
 
+  onimageClick(){
+    this.dialog.open(FullImageDisplayComponent, {
+      data:{title:this.post.title, imageData:this.post.img}
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-<div *ngIf="!pictureService.isLoading">
+<div *ngIf="!pictureService.isLoading" class="list-wrap">
   <app-post *ngFor="let post of pictureService.posts" [post]="post"></app-post>
   <div *ngIf="pictureService.posts.length===0"><i>No post found</i></div>
 </div>

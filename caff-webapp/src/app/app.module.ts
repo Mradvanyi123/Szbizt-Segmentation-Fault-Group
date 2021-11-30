@@ -24,6 +24,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { CanActivateAdmin, CanActivateRoute } from './CanActivateRoute';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FullImageDisplayComponent } from './components/full-image-display/full-image-display.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HeaderFrameComponent,
     PostComponent,
     UserListComponent,
+    FullImageDisplayComponent,
   ],
   imports: [
     BrowserModule,

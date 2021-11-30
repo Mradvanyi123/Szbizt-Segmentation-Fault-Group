@@ -13,7 +13,7 @@
     <span>{{post.userName}}</span>
   </div>
   <div class="image-display">
-    <img class="img" src="data:image/bmp;base64,{{post.img}}" width="100%" height="100%" alt="image">
+    <img class="img" src="data:image/bmp;base64,{{post.img}}" style='height: 100%; width: 100%; object-fit: cover' alt="image" (click)="onimageClick()">
   </div>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
