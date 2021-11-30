@@ -73,9 +73,12 @@ export class HttpService {
     return posts;
   }
 
-  async postPicture(title:string, content:Byte[]|null):Promise<PictureDto>{
+  async postPicture(title:string, cafFile:File):Promise<PictureDto>{
+    let formData: FormData = new FormData();
+    formData.append('caffFile', cafFile);
+    formData.append('name', title);
     try {
-      return await this.http.post<PictureDto>(this.basePath+'picture',{name:title,content:content}, {headers:this.addAuthHeader()}).toPromise();
+      return await this.http.post<PictureDto>(this.basePath+'picture',formData, {headers:this.addAuthHeader()}).toPromise();
     } catch (error:any) {
       throw error;
     }

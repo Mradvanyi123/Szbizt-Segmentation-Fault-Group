@@ -38,7 +38,7 @@ export class PostAddComponent implements OnInit {
   async onUpload():Promise<void>{
     if(this.file && this.title!==''){
       this.isLoading=true;
-      this.errorMsg = await this.pictureService.uploadFile(this.title, this.file.name);
+      this.errorMsg = await this.pictureService.uploadFile(this.title, this.file);
       if(this.errorMsg==='')
       this.onNoClick();
       this.isLoading=false;

@@ -1,4 +1,5 @@
 import { Byte } from "@angular/compiler/src/util";
+import { SafeUrl } from "@angular/platform-browser";
 
 export interface IComment{
     userName:string,
@@ -10,7 +11,7 @@ export class Post{
         public id:string,
         public title:string,
         public userName:string,
-        public img:Byte[] | string,
+        public img: string,
         public comments:IComment[]
     ){}
 }

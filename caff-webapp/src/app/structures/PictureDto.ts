@@ -8,7 +8,7 @@ export class PictureDto{
         public id:string,
         public user:User,
         public name:string,
-        public content:Byte[],
+        public content:string,
         public comments:CommentDto[]
     ){}
 
