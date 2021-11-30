@@ -5,6 +5,7 @@ import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
 import hu.bme.sfg.catalogbackend.util.PictureException;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public interface PictureHandlerService {
 
     PictureDto getPicture(UUID pictureId) throws PictureException;
 
-    PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException;
+    PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException, ParseException;
 
     CommentDto postComment(UUID pictureId, CommentDto commentDto, Principal principal) throws PictureException;
 

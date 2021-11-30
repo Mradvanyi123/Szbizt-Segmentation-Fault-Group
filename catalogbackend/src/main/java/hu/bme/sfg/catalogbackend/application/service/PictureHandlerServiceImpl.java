@@ -6,6 +6,7 @@ import hu.bme.sfg.catalogbackend.application.service.mapper.CommentMapper;
 import hu.bme.sfg.catalogbackend.application.service.mapper.PictureMapper;
 import hu.bme.sfg.catalogbackend.domain.Comment;
 import hu.bme.sfg.catalogbackend.domain.Picture;
+import hu.bme.sfg.catalogbackend.domain.PictureFile;
 import hu.bme.sfg.catalogbackend.domain.User;
 import hu.bme.sfg.catalogbackend.repository.CommentRepository;
 import hu.bme.sfg.catalogbackend.repository.PictureRepositroy;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,6 +37,8 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     private CommentRepository commentRepository;
 
     private UserRepository userRepository;
+
+    private CaffParserServiceImpl caffParserService;
 
     @Override
     public List<PictureDto> getAllPictures() {
@@ -60,13 +64,14 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException {
+    public PictureDto createPicture(PictureDto pictureDto, Principal principal) throws ParseException {
         User creator = userRepository.findByUserName(principal.getName()).get();
-        byte[] picture = getPicture(pictureDto.getContent()); //TODO CaffParser
+
+        PictureFile pictureFile = caffParserService.convertCaff(pictureDto.getContent());
 
         Picture newPicture = Picture.builder()
-                .name(pictureDto.getName())
-                .content(picture) //TODO CaffParser
+                .name(pictureFile.getName())
+                .content(pictureFile.getData())
                 .user(creator)
                 .build();
         pictureRepositroy.save(newPicture);
@@ -110,10 +115,5 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
             log.error("Picture doesn't exists");
             throw new PictureException("Picture doesn't exists");
         }
-    }
-
-    public byte[] getPicture(byte[] pictureContent) {
-        log.info("CAFF file is parsed");
-        return null;
     }
 }
