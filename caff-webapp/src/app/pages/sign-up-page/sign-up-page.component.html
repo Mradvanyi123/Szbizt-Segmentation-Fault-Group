@@ -1,0 +1,32 @@
+<div style="height: 100%;">
+  <mat-card>
+    <h1>CAFF browser</h1>
+    <div class="form-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput [formControl]="userNameControl" [errorStateMatcher]="matcher"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="emailControl" [errorStateMatcher]="matcher"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="'password'" [formControl]="passwordControl" [errorStateMatcher]="matcher"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password again</mat-label>
+          <input matInput [type]="'password'" [formControl]="password2Control" [errorStateMatcher]="matcher"/>
+        </mat-form-field>
+        <div *ngIf="errorMsg!==''" class="error">{{errorMsg}}</div>
+        <button class="sing-up-btn" mat-button (click)="onSignUp()">
+          <div *ngIf="!isLoading">Sign In</div>
+          <mat-spinner *ngIf="isLoading" [diameter]="20 "></mat-spinner>
+        </button>
+    </div>
+    <span>Already have an account? <a routerLink="/signin">Sign In</a></span>
+  </mat-card>
+</div>

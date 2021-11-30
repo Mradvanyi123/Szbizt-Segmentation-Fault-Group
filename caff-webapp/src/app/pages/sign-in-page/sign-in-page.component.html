@@ -1,0 +1,22 @@
+<div style="height: 100%;">
+  <mat-card>
+    <h1>CAFF App</h1>
+    <div class="form-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput [errorStateMatcher]="matcher" [formControl]="userNameControl"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="'password'" [errorStateMatcher]="matcher"  [formControl]="passwordControl"/>
+        </mat-form-field>
+        <div *ngIf="errorMsg!==''" class="error">{{errorMsg}}</div>
+        <button class="sing-in-btn" mat-button (click)="onLogin()">
+          <div *ngIf="!isLoading">Sign In</div>
+          <mat-spinner *ngIf="isLoading" [diameter]="20 "></mat-spinner>
+        </button>
+    </div>
+    <span>Don't have an account? <a routerLink="/signup">Sign Up</a></span>
+  </mat-card>
+</div>

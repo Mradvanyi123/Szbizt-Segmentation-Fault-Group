@@ -1,0 +1,40 @@
+<mat-card>
+  <div class="header">
+    <div class="title-icons">
+
+      <span *ngIf="!titleIsEdit" class="title">{{post.title}}</span>
+      <input *ngIf="titleIsEdit" class="title" placeholder="{{post.title}}" class="title-input" #titleInput (keydown.enter)="onTitleSubmit(titleInput)"/>
+
+      <div class="icon-wrapper" *ngIf="isAdmin">
+        <mat-icon class="icon" (click)="onEdit()">edit</mat-icon>
+        <mat-icon class="icon" (click)="onDelete()">delete</mat-icon>
+      </div>
+    </div>
+    <span>{{post.userName}}</span>
+  </div>
+  <div class="image-display">
+    <img class="img" src="data:image/bmp;base64,{{post.img}}" style='height: 100%; width: 100%; object-fit: cover' alt="image" (click)="onimageClick()">
+  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Comments
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let comment of post.comments" class="comment">
+      <div>{{comment.userName}}:</div>
+      <div>{{comment.text}}</div>
+    </div>
+
+    <div style="margin: 10px 20px;">
+      <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+    </div>
+
+
+    <mat-form-field appearance="outline" class="comment-input">
+      <mat-label>Add comment</mat-label>
+      <input matInput #input (keydown.enter)="onAddComment(input)"/>
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-card>
