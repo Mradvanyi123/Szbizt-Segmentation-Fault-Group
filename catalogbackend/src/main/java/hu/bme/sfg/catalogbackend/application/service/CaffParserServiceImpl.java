@@ -1,9 +1,8 @@
 package hu.bme.sfg.catalogbackend.application.service;
 
 import hu.bme.sfg.catalogbackend.util.PictureFile;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
