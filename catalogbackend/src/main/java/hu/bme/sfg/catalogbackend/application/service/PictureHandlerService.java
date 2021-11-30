@@ -18,7 +18,7 @@ public interface PictureHandlerService {
 
     PictureDto getPicture(UUID pictureId) throws PictureException;
 
-    PictureDto createPicture(MultipartFile file, Principal principal) throws ParseException, IOException;
+    PictureDto createPicture(String fileName, MultipartFile file, Principal principal) throws PictureException, ParseException, IOException;
 
     PictureDto editPictureName(String newName, UUID pictureId) throws PictureException;
 

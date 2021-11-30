@@ -49,10 +49,10 @@ public class PictureController {
     }
 
     @PostMapping
-    public ResponseEntity<PictureDto> createPicture(@RequestParam("caffFile") MultipartFile file, Principal principal) {
+    public ResponseEntity<PictureDto> createPicture(@RequestParam("name") String fileName, @RequestParam("caffFile") MultipartFile file, Principal principal) {
         try {
-            return ResponseEntity.ok(pictureHandlerService.createPicture(file, principal));
-        } catch (ParseException | IOException e) {
+            return ResponseEntity.ok(pictureHandlerService.createPicture(fileName, file, principal));
+        } catch (PictureException | ParseException | IOException e) {
             return ResponseEntity.badRequest().build();
         }
     }
