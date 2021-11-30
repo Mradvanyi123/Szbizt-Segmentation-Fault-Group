@@ -25,12 +25,12 @@ import java.util.Date;
 @Slf4j
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+    private static final String ERROR_MESSAGE = "Something went wrong while parsing /login request body";
     private final String jwtAudience;
     private final String jwtIssuer;
     private final String jwtSecret;
     private final String jwtType;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String ERROR_MESSAGE = "Something went wrong while parsing /login request body";
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, String jwtAudience, String jwtIssuer, String jwtSecret, String jwtType) {
         this.jwtAudience = jwtAudience;
@@ -71,7 +71,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token);
         response.setContentType("application/json");
-        response.getWriter().write("{\"token\":\""+token+"\"}");
+        response.getWriter().write("{\"token\":\"" + token + "\"}");
         response.getWriter().flush();
     }
 }

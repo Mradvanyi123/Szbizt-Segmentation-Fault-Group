@@ -11,11 +11,15 @@ import hu.bme.sfg.catalogbackend.repository.CommentRepository;
 import hu.bme.sfg.catalogbackend.repository.PictureRepositroy;
 import hu.bme.sfg.catalogbackend.repository.UserRepository;
 import hu.bme.sfg.catalogbackend.util.PictureException;
+import hu.bme.sfg.catalogbackend.util.PictureFile;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,6 +39,8 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     private CommentRepository commentRepository;
 
     private UserRepository userRepository;
+
+    private CaffParserServiceImpl caffParserService;
 
     @Override
     public List<PictureDto> getAllPictures() {
@@ -60,13 +66,14 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException {
+    public PictureDto createPicture(MultipartFile file, Principal principal) throws ParseException, IOException {
         User creator = userRepository.findByUserName(principal.getName()).get();
-        byte[] picture = getPicture(pictureDto.getContent()); //TODO CaffParser
+
+        PictureFile pictureFile = caffParserService.convertCaff(file.getBytes());
 
         Picture newPicture = Picture.builder()
-                .name(pictureDto.getName())
-                .content(picture) //TODO CaffParser
+                .name(pictureFile.getName())
+                .content(pictureFile.getData())
                 .user(creator)
                 .build();
         pictureRepositroy.save(newPicture);

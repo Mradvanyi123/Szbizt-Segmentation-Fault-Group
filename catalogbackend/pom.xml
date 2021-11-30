@@ -101,6 +101,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -135,9 +140,9 @@
 
 	<profiles>
 		<profile>
-			<id>h2</id>
+			<id>postgresql</id>
 			<properties>
-				<active.profile>h2</active.profile>
+				<active.profile>postgresql</active.profile>
 			</properties>
 		</profile>
 	</profiles>

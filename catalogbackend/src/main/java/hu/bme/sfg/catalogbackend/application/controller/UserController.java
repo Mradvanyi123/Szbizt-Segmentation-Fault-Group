@@ -3,11 +3,8 @@ package hu.bme.sfg.catalogbackend.application.controller;
 import hu.bme.sfg.catalogbackend.application.dto.RegisterDto;
 import hu.bme.sfg.catalogbackend.application.dto.UserDto;
 import hu.bme.sfg.catalogbackend.application.service.UserService;
-import hu.bme.sfg.catalogbackend.util.PictureException;
 import hu.bme.sfg.catalogbackend.util.UserException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<UserDto> getMyInfo(Principal principal){
+    public ResponseEntity<UserDto> getMyInfo(Principal principal) {
         return ResponseEntity.ok(userService.getMyInfo(principal));
     }
 

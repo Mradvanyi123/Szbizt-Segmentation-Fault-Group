@@ -59,22 +59,22 @@ public class CatalogBackendApplication implements CommandLineRunner {
 
         Picture pictureFlower = Picture.builder()
                 .name("Lila virágok")
-                .content(null)
+                .content(new byte[]{})
                 .user(userAnne)
                 .build();
         Picture pictureDog = Picture.builder()
                 .name("Egy shiba inu kutya")
-                .content(null)
+                .content(new byte[]{})
                 .user(userAnne)
                 .build();
         Picture pictureSky = Picture.builder()
                 .name("Kék ég")
-                .content(null)
+                .content(new byte[]{})
                 .user(userPeter)
                 .build();
         Picture pictureGrass = Picture.builder()
                 .name("Zöld fű")
-                .content(null)
+                .content(new byte[]{})
                 .user(userPeter)
                 .build();
 

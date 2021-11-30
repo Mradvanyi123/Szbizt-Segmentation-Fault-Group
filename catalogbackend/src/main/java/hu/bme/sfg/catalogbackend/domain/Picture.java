@@ -25,7 +25,7 @@ public class Picture {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true) //TODO jav false-ra
+    @Column(nullable = false)
     @Lob
     private byte[] content;
 

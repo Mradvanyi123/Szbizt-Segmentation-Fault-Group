@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto register(RegisterDto registerDto) throws UserException {
-        if(!userRepository.findByUserName(registerDto.getUserName()).isPresent() || !userRepository.findByEmail(registerDto.getEmail()).isPresent()){
+        if (!userRepository.findByUserName(registerDto.getUserName()).isPresent() || !userRepository.findByEmail(registerDto.getEmail()).isPresent()) {
             User user = User.builder()
                     .userName(registerDto.getUserName())
                     .email(registerDto.getEmail())
@@ -37,14 +37,14 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             log.info("User is created");
             return userMapper.userToUserDto(user);
-        }else {
+        } else {
             log.error("Username or email is not unique");
             throw new UserException("Username or email is not unique");
         }
     }
 
     @Override
-    public UserDto getMyInfo(Principal principal){
+    public UserDto getMyInfo(Principal principal) {
         return userMapper.userToUserDto(userRepository.findByUserName(principal.getName()).get());
     }
 
