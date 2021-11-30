@@ -10,3 +10,7 @@
 [11/30/21 20:00:08 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
 [11/30/21 20:00:12 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
 [11/30/21 20:00:12 Közép-európai téli idõ ] [INFO] [main] Program ended
+[11/30/21 20:53:16 Közép-európai téli idõ ] [INFO] [main] Program started
+[11/30/21 20:53:16 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[11/30/21 20:53:19 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[11/30/21 20:53:19 Közép-európai téli idõ ] [INFO] [main] Program ended

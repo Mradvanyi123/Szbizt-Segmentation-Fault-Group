@@ -10,11 +10,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.Scanner;
-import java.util.UUID;
 
 @Service
 @Slf4j
 public class CaffParserServiceImpl implements CaffParserService {
+
+    @Value("${catalog.caff.path.base}")
+    private String pathBase;
 
     @Value("${catalog.caff.parser.exe.path}")
     private String parserExePath;
@@ -24,6 +26,7 @@ public class CaffParserServiceImpl implements CaffParserService {
 
     @Value("${catalog.caff.file.output.path}")
     private String parserOutputFilePath;
+
 
     @Override
     public PictureFile convertCaff(byte[] picture) throws ParseException {
@@ -40,10 +43,9 @@ public class CaffParserServiceImpl implements CaffParserService {
 
     private PictureFile parsePicture(byte[] data) throws ParseException {
         try {
-            String parserURI = parserExePath;
-//            Files.write(Paths.get("temp.caff"), data);
-            Files.write(Paths.get(parserInputFilePath), data);
-            String[] command = {parserURI, parserInputFilePath, parserOutputFilePath};
+            String parserURI = pathBase + parserExePath;
+            Files.write(Paths.get(pathBase + parserInputFilePath), data);
+            String[] command = {parserURI, pathBase + parserInputFilePath, pathBase + parserOutputFilePath};
             log.info("*** Parsing is started *** ");
             return execute(command);
         } catch (IOException | InterruptedException e) {
@@ -66,11 +68,10 @@ public class CaffParserServiceImpl implements CaffParserService {
         int exitValue = process.exitValue();
         if (exitValue == 0) {
             try (Scanner input = new Scanner(process.getInputStream())) {
-                String[] result = input.nextLine().split(";");
+                //String[] result = input.nextLine().split(";");
                 PictureFile pre = new PictureFile();
-                //pre.setName(result[0]);
-                pre.setName("File_" + UUID.randomUUID());
-                pre.setData(Files.readAllBytes(Paths.get(parserOutputFilePath)));
+                //pre.setName("File_" + UUID.randomUUID());
+                pre.setData(Files.readAllBytes(Paths.get(pathBase + parserOutputFilePath)));
                 return pre;
             }
         } else {

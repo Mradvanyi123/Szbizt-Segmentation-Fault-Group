@@ -66,22 +66,26 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public PictureDto createPicture(MultipartFile file, Principal principal) throws ParseException, IOException {
-        User creator = userRepository.findByUserName(principal.getName()).get();
+    public PictureDto createPicture(String fileName, MultipartFile file, Principal principal) throws PictureException, IOException, ParseException {
+        if (fileName == null || fileName.equals("")) {
+            throw new PictureException("Filename cannot be null or empty");
+        } else {
+            User creator = userRepository.findByUserName(principal.getName()).get();
 
-        PictureFile pictureFile = caffParserService.convertCaff(file.getBytes());
+            PictureFile pictureFile = caffParserService.convertCaff(file.getBytes());
 
-        Picture newPicture = Picture.builder()
-                .name(pictureFile.getName())
-                .content(pictureFile.getData())
-                .user(creator)
-                .build();
-        pictureRepositroy.save(newPicture);
+            Picture newPicture = Picture.builder()
+                    .name(fileName)
+                    .content(pictureFile.getData())
+                    .user(creator)
+                    .build();
+            pictureRepositroy.save(newPicture);
 
-        creator.addPicture(newPicture);
+            creator.addPicture(newPicture);
 
-        log.info("Picture is created");
-        return pictureMapper.pictureToPictureDto(newPicture);
+            log.info("Picture is created");
+            return pictureMapper.pictureToPictureDto(newPicture);
+        }
     }
 
     @Override

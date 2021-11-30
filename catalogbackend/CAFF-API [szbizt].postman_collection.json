@@ -41,7 +41,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/picture/e0825a4d-f772-42bc-a263-57a4b5783798",
+							"raw": "http://localhost:8080/api/picture/2fe11144-9c41-4bf1-a8a2-a072f50dd3d3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -50,7 +50,7 @@
 							"path": [
 								"api",
 								"picture",
-								"e0825a4d-f772-42bc-a263-57a4b5783798"
+								"2fe11144-9c41-4bf1-a8a2-a072f50dd3d3"
 							]
 						}
 					},
@@ -62,8 +62,19 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"name\": \"Másik kutyás kép\",\r\n        \"content\": null\r\n    }",
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "caffFile",
+									"type": "file",
+									"src": "/C:/Users/stell/Desktop/caff_files/1.caff"
+								},
+								{
+									"key": "name",
+									"value": "Ez egy teszt kép",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,6 +154,41 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "caffFile",
+									"type": "file",
+									"src": "/C:/Users/stell/Desktop/caff_files/1.caff"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"picture"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"auth": {
@@ -150,7 +196,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDQUZGIENhdGFsb2cgQmFja2VuZCBKV1QgSXNzdWVyIiwiYXVkIjoiQ0FGRiBDYXRhbG9nIEJhY2tlbmQiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTYzODEyNjIxN30.VbPlHxptl2yRv72X_m-g55v_UM-VpbgMiTPHrkGsOUmC_31bQVFIsDFXcekq5esEwAWMLAFQDxSNugktuVg7cQ",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDQUZGIENhdGFsb2cgQmFja2VuZCBKV1QgSXNzdWVyIiwiYXVkIjoiQ0FGRiBDYXRhbG9nIEJhY2tlbmQiLCJzdWIiOiJhbm5lIiwiZXhwIjoxNjM4MzA0MTk2fQ.cxOZJTy1aksiGI5nGEdeQCpHWGL1AUVqgqKjlOJ9Lr_D9WPfuk1t_Xx9lumVEWKkNsjG6aej9AVBffLXuaoYvw",
 						"type": "string"
 					}
 				]
@@ -196,7 +242,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\": \"anne\",\r\n    \"password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +324,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDc290dGhvbkFwcCBKV1QgSXNzdWVyIiwiYXVkIjoiQ3NvdHRob25BcHAiLCJzdWIiOiJzdGVsbGFzaXBpIiwiZXhwIjoxNjIwOTI1MjAyfQ.jTvallXrTfurzZ3w45qxXp0BVC1JIE3pKbAKwBdASPaAcfwb1UxpCVRgxhIWFhJnd7fklg1m3vhFKx8blpnLYg",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDQUZGIENhdGFsb2cgQmFja2VuZCBKV1QgSXNzdWVyIiwiYXVkIjoiQ0FGRiBDYXRhbG9nIEJhY2tlbmQiLCJzdWIiOiJzdGVsbGEiLCJleHAiOjE2MzgxMzEzMzR9.Uae5UORytY8kiLqvWD5IQQ1rPBdeMCzrDwT1Vh1X5QojpOOlvdfK1ksweV_7lrJhESfkc_8JQ8h68aJ-8vXxFQ",
 									"type": "string"
 								}
 							]

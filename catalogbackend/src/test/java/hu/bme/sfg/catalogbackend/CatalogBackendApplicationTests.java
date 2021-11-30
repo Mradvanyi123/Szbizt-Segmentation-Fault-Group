@@ -135,7 +135,7 @@ class CatalogBackendApplicationTests {
     }
 
     @Test
-    void createPictureTest() throws IOException, ParseException {
+    void createPictureTest() throws IOException, ParseException, PictureException {
 
         String path = "src/test/java/hu/bme/sfg/catalogbackend/testcaff/1.caff";
         File file = new File(path);
@@ -146,7 +146,7 @@ class CatalogBackendApplicationTests {
         Principal mockPrincipal = Mockito.mock(Principal.class);
         Mockito.when(mockPrincipal.getName()).thenReturn("anneeeee");
 
-        PictureDto picture = pictureHandlerService.createPicture(multipartFile, mockPrincipal);
+        PictureDto picture = pictureHandlerService.createPicture("Ez egy teszt kép",multipartFile, mockPrincipal);
 
         Assert.assertNotNull(picture);
     }
