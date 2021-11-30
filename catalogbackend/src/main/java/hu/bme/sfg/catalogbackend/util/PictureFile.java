@@ -1,4 +1,4 @@
-package hu.bme.sfg.catalogbackend.domain;
+package hu.bme.sfg.catalogbackend.util;
 
 import lombok.Getter;
 import lombok.Setter;

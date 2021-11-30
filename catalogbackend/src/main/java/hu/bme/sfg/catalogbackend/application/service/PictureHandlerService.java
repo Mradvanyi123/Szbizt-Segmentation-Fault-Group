@@ -3,7 +3,9 @@ package hu.bme.sfg.catalogbackend.application.service;
 import hu.bme.sfg.catalogbackend.application.dto.CommentDto;
 import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
 import hu.bme.sfg.catalogbackend.util.PictureException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
@@ -16,7 +18,7 @@ public interface PictureHandlerService {
 
     PictureDto getPicture(UUID pictureId) throws PictureException;
 
-    PictureDto createPicture(PictureDto pictureDto, Principal principal) throws PictureException, ParseException;
+    PictureDto createPicture(MultipartFile file, Principal principal) throws ParseException, IOException;
 
     CommentDto postComment(UUID pictureId, CommentDto commentDto, Principal principal) throws PictureException;
 

@@ -8,5 +8,6 @@ import java.security.Principal;
 
 public interface UserService {
     UserDto register(RegisterDto registerDto) throws UserException;
+
     UserDto getMyInfo(Principal principal);
 }

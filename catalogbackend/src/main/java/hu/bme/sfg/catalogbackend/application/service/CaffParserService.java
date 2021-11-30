@@ -1,6 +1,6 @@
 package hu.bme.sfg.catalogbackend.application.service;
 
-import hu.bme.sfg.catalogbackend.domain.PictureFile;
+import hu.bme.sfg.catalogbackend.util.PictureFile;
 
 import java.text.ParseException;
 

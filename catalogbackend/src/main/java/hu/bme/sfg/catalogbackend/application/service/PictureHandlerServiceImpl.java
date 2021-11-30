@@ -6,16 +6,18 @@ import hu.bme.sfg.catalogbackend.application.service.mapper.CommentMapper;
 import hu.bme.sfg.catalogbackend.application.service.mapper.PictureMapper;
 import hu.bme.sfg.catalogbackend.domain.Comment;
 import hu.bme.sfg.catalogbackend.domain.Picture;
-import hu.bme.sfg.catalogbackend.domain.PictureFile;
 import hu.bme.sfg.catalogbackend.domain.User;
 import hu.bme.sfg.catalogbackend.repository.CommentRepository;
 import hu.bme.sfg.catalogbackend.repository.PictureRepositroy;
 import hu.bme.sfg.catalogbackend.repository.UserRepository;
 import hu.bme.sfg.catalogbackend.util.PictureException;
+import hu.bme.sfg.catalogbackend.util.PictureFile;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
@@ -64,10 +66,10 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
     }
 
     @Override
-    public PictureDto createPicture(PictureDto pictureDto, Principal principal) throws ParseException {
+    public PictureDto createPicture(MultipartFile file, Principal principal) throws ParseException, IOException {
         User creator = userRepository.findByUserName(principal.getName()).get();
 
-        PictureFile pictureFile = caffParserService.convertCaff(pictureDto.getContent());
+        PictureFile pictureFile = caffParserService.convertCaff(file.getBytes());
 
         Picture newPicture = Picture.builder()
                 .name(pictureFile.getName())

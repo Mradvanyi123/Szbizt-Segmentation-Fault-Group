@@ -1,6 +1,8 @@
 package hu.bme.sfg.catalogbackend.application.service;
 
-import hu.bme.sfg.catalogbackend.domain.PictureFile;
+import hu.bme.sfg.catalogbackend.util.PictureFile;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +13,25 @@ import java.text.ParseException;
 import java.util.Scanner;
 import java.util.UUID;
 
-
 @Service
 @Slf4j
 public class CaffParserServiceImpl implements CaffParserService {
+
+    @Value("${catalog.caff.parser.exe.path}")
+    private String parserExePath;
+
+    @Value("${catalog.caff.file.input.path}")
+    private String parserInputFilePath;
+
+    @Value("${catalog.caff.file.output.path}")
+    private String parserOutputFilePath;
 
     @Override
     public PictureFile convertCaff(byte[] picture) throws ParseException {
         try {
             PictureFile pictureFile = parsePicture(picture);
-            log.info("CAFF parsed");
+            log.info("CAFF is parsed");
+            log.info("*** Parsing is ended *** ");
             return pictureFile;
         } catch (ParseException e) {
             log.error("There was  an error during parsing" + e.getMessage());
@@ -30,14 +41,13 @@ public class CaffParserServiceImpl implements CaffParserService {
 
     private PictureFile parsePicture(byte[] data) throws ParseException {
         try {
-            String parserURI = "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\CAFF_Parser\\CAFF_Parser.exe";
-            Files.write(Paths.get("temp.caff"), data);
-            String[] command = {parserURI, "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp.caff", "C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp_output.bmp"};
-            log.info("Start to parse file: ");
+            String parserURI = parserExePath;
+//            Files.write(Paths.get("temp.caff"), data);
+            Files.write(Paths.get(parserInputFilePath), data);
+            String[] command = {parserURI, parserInputFilePath, parserOutputFilePath};
+            log.info("*** Parsing is started *** ");
             return execute(command);
-        } catch (IOException e) {
-            log.error("Could not save the preview image");
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             log.error("There was an error during the execution of the parse process");
         }
         return null;
@@ -54,14 +64,14 @@ public class CaffParserServiceImpl implements CaffParserService {
         }
 
         process.waitFor();
-        int exitvalue = process.exitValue();
-        if (exitvalue == 0) {
+        int exitValue = process.exitValue();
+        if (exitValue == 0) {
             try (Scanner input = new Scanner(process.getInputStream())) {
                 String[] result = input.nextLine().split(";");
                 PictureFile pre = new PictureFile();
                 //pre.setName(result[0]);
                 pre.setName("File_" + UUID.randomUUID());
-                pre.setData(Files.readAllBytes(Paths.get("C:\\Users\\stell\\Documents\\GitHub\\Szbizt-Segmentation-Fault-Group\\catalogbackend\\temp_output.bmp")));
+                pre.setData(Files.readAllBytes(Paths.get(parserOutputFilePath)));
                 return pre;
             }
         } else {

@@ -4,7 +4,6 @@ import hu.bme.sfg.catalogbackend.application.dto.CommentDto;
 import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
 import hu.bme.sfg.catalogbackend.application.service.CaffParserServiceImpl;
 import hu.bme.sfg.catalogbackend.application.service.PictureHandlerService;
-import hu.bme.sfg.catalogbackend.domain.PictureFile;
 import hu.bme.sfg.catalogbackend.util.PictureException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,20 +49,12 @@ public class PictureController {
     }
 
     @PostMapping
-    public ResponseEntity<PictureDto> createPicture(@Valid @RequestBody PictureDto pictureDto, Principal principal) {
+    public ResponseEntity<PictureDto> createPicture(@RequestParam("caffFile") MultipartFile file, Principal principal) {
         try {
-            return ResponseEntity.ok(pictureHandlerService.createPicture(pictureDto, principal));
-        } catch (PictureException | ParseException e) {
-            return ResponseEntity.badRequest().build(); //TODO
+            return ResponseEntity.ok(pictureHandlerService.createPicture(file, principal));
+        } catch (ParseException | IOException e) {
+            return ResponseEntity.badRequest().build();
         }
-    }
-
-    @PostMapping("/upload")
-    public ResponseEntity<PictureFile> uploadCaff(@RequestParam("fileKey") MultipartFile file) throws ParseException, IOException {
-        System.out.println("CAFF file upload started: " + file.getName() + " size: " + file.getSize());
-
-        return ResponseEntity.status(HttpStatus.OK).body(caffService.convertCaff(file.getBytes()));
-
     }
 
     @PostMapping("/{id}/comment")
