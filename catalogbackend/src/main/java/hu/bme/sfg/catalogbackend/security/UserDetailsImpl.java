@@ -1,6 +1,5 @@
 package hu.bme.sfg.catalogbackend.security;
 
-import hu.bme.sfg.catalogbackend.util.Role;
 import hu.bme.sfg.catalogbackend.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,7 +12,7 @@ import java.util.List;
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private User user;
+    private final User user;
 
     public UserDetailsImpl(User user) {
         this.user = user;

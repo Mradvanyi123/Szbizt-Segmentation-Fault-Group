@@ -47,14 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtAudience, jwtIssuer, jwtSecret, jwtType))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtAudience, jwtIssuer, jwtSecret, jwtType, userRepository))
                 .authorizeRequests()
-                .antMatchers("/user/register").permitAll()
+                .antMatchers("/user/register", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .logout().logoutSuccessHandler(new LogoutSuccessHandler()).and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);;
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean

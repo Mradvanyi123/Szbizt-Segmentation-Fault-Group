@@ -2,17 +2,21 @@ package hu.bme.sfg.catalogbackend.application.controller;
 
 import hu.bme.sfg.catalogbackend.application.dto.CommentDto;
 import hu.bme.sfg.catalogbackend.application.dto.PictureDto;
+import hu.bme.sfg.catalogbackend.application.service.CaffParserServiceImpl;
 import hu.bme.sfg.catalogbackend.application.service.PictureHandlerService;
 import hu.bme.sfg.catalogbackend.util.PictureException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +26,9 @@ import java.util.UUID;
 public class PictureController {
 
     private PictureHandlerService pictureHandlerService;
+
+    @Autowired
+    private CaffParserServiceImpl caffService;
 
     @GetMapping
     public ResponseEntity<List<PictureDto>> getAllPictures(@RequestParam(required = false) String name) {
@@ -42,11 +49,11 @@ public class PictureController {
     }
 
     @PostMapping
-    public ResponseEntity<PictureDto> createPicture(@Valid @RequestBody PictureDto pictureDto, Principal principal) {
+    public ResponseEntity<PictureDto> createPicture(@RequestParam("caffFile") MultipartFile file, Principal principal) {
         try {
-            return ResponseEntity.ok(pictureHandlerService.createPicture(pictureDto, principal));
-        } catch (PictureException e) {
-            return ResponseEntity.badRequest().build(); //TODO
+            return ResponseEntity.ok(pictureHandlerService.createPicture(file, principal));
+        } catch (ParseException | IOException e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
