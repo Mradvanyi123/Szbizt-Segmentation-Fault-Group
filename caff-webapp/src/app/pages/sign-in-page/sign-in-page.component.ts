@@ -38,7 +38,6 @@ export class SignInPageComponent implements OnInit {
     }
     if(ret) return;
     
-    //Validaciok, meg minden
     this.isLoading=true;
     this.errorMsg = await this.authService.login(this.userNameControl.value, this.passwordControl.value);
     this.isLoading=false;

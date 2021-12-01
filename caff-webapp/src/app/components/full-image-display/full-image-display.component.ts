@@ -1,6 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Post } from 'src/app/structures/Post';
 import { FullImageDialogData } from '../post/post.component';
 
 @Component({

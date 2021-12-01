@@ -90,3 +90,11 @@
 [12/01/21 00:21:07 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
 [12/01/21 00:21:09 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
 [12/01/21 00:21:09 Közép-európai téli idõ ] [INFO] [main] Program ended
+[12/01/21 12:30:52 Közép-európai téli idõ ] [INFO] [main] Program started
+[12/01/21 12:30:52 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[12/01/21 12:30:54 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[12/01/21 12:30:54 Közép-európai téli idõ ] [INFO] [main] Program ended
+[12/01/21 12:31:28 Közép-európai téli idõ ] [INFO] [main] Program started
+[12/01/21 12:31:28 Közép-európai téli idõ ] [INFO] [BmpParser] Headers written successfully
+[12/01/21 12:31:31 Közép-európai téli idõ ] [INFO] [BmpParser] Data written successfully
+[12/01/21 12:31:31 Közép-európai téli idõ ] [INFO] [main] Program ended

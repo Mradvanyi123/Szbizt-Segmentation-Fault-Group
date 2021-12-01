@@ -31,6 +31,7 @@ export class HeaderFrameComponent implements OnInit {
     return AuthService.loggedInUser?.role===Roles.ADMIN;
   }
 
+  hideSearch:boolean = false;
 
   ngOnInit(): void {
   }
@@ -46,15 +47,17 @@ export class HeaderFrameComponent implements OnInit {
   }
 
   onTitle():void{
+    this.hideSearch=false;
     this.router.navigate(['auth','home']);
   }
 
   onUsers():void{
+    this.hideSearch=true;
     this.router.navigate(['auth','users']);
   }
 
   onLogout():void{
-    //Discard token etc...
+    this.authService.logout();
     this.router.navigate(['signin']);
   }
 

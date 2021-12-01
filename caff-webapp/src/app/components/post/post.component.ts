@@ -18,7 +18,7 @@ export interface FullImageDialogData {
 })
 export class PostComponent implements OnInit {
 
-  @Input() post:Post ={id:'0',title:'', img:'', userName:'', comments:[]}
+  @Input() post:Post | undefined;
   titleIsEdit:boolean = false;
 
   constructor(private pictureService:PictureHandlerService, public authService:AuthService, public dialog:MatDialog) { }
@@ -34,7 +34,7 @@ export class PostComponent implements OnInit {
 
   async onAddComment(target:HTMLInputElement):Promise<void>{
     this.isLoading=true;
-    await this.pictureService.addComment(this.post.id,{userName:AuthService.loggedInUser!.username, text:target.value});
+    await this.pictureService.addComment(this.post!.id,{userName:AuthService.loggedInUser!.username, text:target.value});
     this.isLoading=false;
     target.value='';
     target.blur();
@@ -42,7 +42,7 @@ export class PostComponent implements OnInit {
 
   async onTitleSubmit(target:HTMLInputElement):Promise<void>{
     if(target.value!==''){
-      await this.pictureService.editTitle(this.post.id,target.value);
+      await this.pictureService.editTitle(this.post!.id,target.value);
       target.value='';
     }
     target.blur();
@@ -55,12 +55,12 @@ export class PostComponent implements OnInit {
   }
 
   async onDelete():Promise<void>{
-    await this.pictureService.deletePost(this.post.id);
+    await this.pictureService.deletePost(this.post!.id);
   }
 
   onimageClick(){
     this.dialog.open(FullImageDisplayComponent, {
-      data:{title:this.post.title, imageData:this.post.img}
+      data:{title:this.post!.title, imageData:this.post!.img}
     });
   }
 

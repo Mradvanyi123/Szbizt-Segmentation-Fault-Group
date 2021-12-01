@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowsePageComponent } from './browse-page.component';
@@ -8,6 +9,7 @@ describe('BrowsePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[HttpClientModule],
       declarations: [ BrowsePageComponent ]
     })
     .compileComponents();
