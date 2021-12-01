@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtAudience, jwtIssuer, jwtSecret, jwtType))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtAudience, jwtIssuer, jwtSecret, jwtType, userRepository))
                 .authorizeRequests()
-                .antMatchers("/user/register", "/h2-console/**").permitAll()
+                .antMatchers("/user/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().sameOrigin()
