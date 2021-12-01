@@ -12,17 +12,17 @@
 ## Usage
 ***1. H2 in-memory database***
 
-Mivel lokális H2 adatbázist használunk, így nincs szükség semmilyen setup-ra. Elérni a futtatás indítása után a  url-en lehet.
-Because we use a local, in-memory H2 database, no setup is required. It can be accessed at [http://localhost:8080/api/h2-console](http://localhost:8080/api/h2-console) after starting the run.
-*The JDBC url, username, and password are available in the application.properties*
+It's a local, in-memory database, no setup is required.
 
 **Build**
 
-mvn clean install
+```mvn clean install```
+
 **Run**
 
-mvn spring-boot:run
-***2. PostgreSQL adatbázissal***
+```mvn spring-boot:run```
+
+***2. PostgreSQL database***
 
 **Prerequisites**
 - PostgreSQL
@@ -31,11 +31,11 @@ First, after installing PostgreSQL, you must create a database named *caffdb* an
 
 **Build**
 
-mvn clean install  -Ppostgresql
+```mvn clean install  -Ppostgresql```
 
 **Run**
 
-mvn spring-boot:run -Dspring-boot.run.profiles=postgresql
+```mvn spring-boot:run -Dspring-boot.run.profiles=postgresql```
 
 ## FYI
 The endpoints are then available at http://localhost:8080/api/url. Alternatively, the root folder contains a postman collection (*.../CAFF-API[szbizt].postman_collection.json*) that contains executable sample requests.
