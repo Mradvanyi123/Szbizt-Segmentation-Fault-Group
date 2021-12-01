@@ -8,6 +8,7 @@
 - Java 11
 - [MinGW](http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download)
 - [CMake](https://cmake.org/download/)
+- you have to set the *catalog.caff.path.base* property in the *application.properties* to the full path where your catalogbackend folder is on your computer
 
 ## Usage
 ***1. H2 in-memory database***
@@ -38,4 +39,4 @@ First, after installing PostgreSQL, you must create a database named *caffdb* an
 ```mvn spring-boot:run -Dspring-boot.run.profiles=postgresql```
 
 ## FYI
-The endpoints are then available at http://localhost:8080/api/url. Alternatively, the root folder contains a postman collection (*.../CAFF-API[szbizt].postman_collection.json*) that contains executable sample requests.
+The endpoints are available at http://localhost:8080/api/url. Alternatively, the root folder contains a postman collection (*.../CAFF-API[szbizt].postman_collection.json*) that contains executable sample requests.
