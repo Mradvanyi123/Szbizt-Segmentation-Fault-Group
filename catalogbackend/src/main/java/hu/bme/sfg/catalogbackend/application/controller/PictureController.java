@@ -49,21 +49,21 @@ public class PictureController {
     }
 
     @PostMapping
-    public ResponseEntity<PictureDto> createPicture(@RequestParam("name") String fileName, @RequestParam("caffFile") MultipartFile file, Principal principal) {
+    public ResponseEntity<Object> createPicture(@RequestParam("name") String fileName, @RequestParam("caffFile") MultipartFile file, Principal principal) {
         try {
             return ResponseEntity.ok(pictureHandlerService.createPicture(fileName, file, principal));
         } catch (PictureException | ParseException | IOException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<PictureDto> editPictureName(@PathVariable UUID id, @Valid @RequestBody String newName) {
+    public ResponseEntity<Object> editPictureName(@PathVariable UUID id, @Valid @RequestBody String newName) {
         try {
             return ResponseEntity.ok(pictureHandlerService.editPictureName(newName, id));
         } catch (PictureException e) {
-            return ResponseEntity.badRequest().build(); //TODO
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

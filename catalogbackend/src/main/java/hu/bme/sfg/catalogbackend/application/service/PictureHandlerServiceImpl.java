@@ -130,7 +130,7 @@ public class PictureHandlerServiceImpl implements PictureHandlerService {
             Picture newPic = pic.get();
             newPic.setName(newName);
             pictureRepositroy.save(newPic);
-            log.info("New name of the picture is: "+newName);
+            log.info("New name of the picture is: " + newName);
             return pictureMapper.pictureToPictureDto(newPic);
         } else {
             log.error("Picture doesn't exists");

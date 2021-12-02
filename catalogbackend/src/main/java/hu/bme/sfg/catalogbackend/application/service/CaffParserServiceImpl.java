@@ -68,9 +68,7 @@ public class CaffParserServiceImpl implements CaffParserService {
         int exitValue = process.exitValue();
         if (exitValue == 0) {
             try (Scanner input = new Scanner(process.getInputStream())) {
-                //String[] result = input.nextLine().split(";");
                 PictureFile pre = new PictureFile();
-                //pre.setName("File_" + UUID.randomUUID());
                 pre.setData(Files.readAllBytes(Paths.get(pathBase + parserOutputFilePath)));
                 return pre;
             }

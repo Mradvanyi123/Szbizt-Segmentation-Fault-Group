@@ -11,5 +11,6 @@ public interface UserService {
     UserDto register(RegisterDto registerDto) throws UserException;
 
     UserDto getMyInfo(Principal principal);
+
     List<UserDto> getAll();
 }
