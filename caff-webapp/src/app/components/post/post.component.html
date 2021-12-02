@@ -2,18 +2,18 @@
   <div class="header">
     <div class="title-icons">
 
-      <span *ngIf="!titleIsEdit" class="title">{{post.title}}</span>
-      <input *ngIf="titleIsEdit" class="title" placeholder="{{post.title}}" class="title-input" #titleInput (keydown.enter)="onTitleSubmit(titleInput)"/>
+      <span *ngIf="!titleIsEdit" class="title">{{post!.title}}</span>
+      <input *ngIf="titleIsEdit" class="title" placeholder="{{post!.title}}" class="title-input" #titleInput (keydown.enter)="onTitleSubmit(titleInput)"/>
 
       <div class="icon-wrapper" *ngIf="isAdmin">
         <mat-icon class="icon" (click)="onEdit()">edit</mat-icon>
         <mat-icon class="icon" (click)="onDelete()">delete</mat-icon>
       </div>
     </div>
-    <span>{{post.userName}}</span>
+    <span>{{post!.userName}}</span>
   </div>
-  <div class="image-display">
-    <img class="img" src="data:image/bmp;base64,{{post.img}}" style='height: 100%; width: 100%; object-fit: cover' alt="image" (click)="onimageClick()">
+  <div class="image-display" >
+    <img class="img" src="data:image/bmp;base64,{{post!.img}}" style='height: 100%; width: 100%; object-fit: cover' alt="image" (click)="onimageClick()">
   </div>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -22,7 +22,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <div *ngFor="let comment of post.comments" class="comment">
+    <div *ngFor="let comment of post!.comments" class="comment">
       <div>{{comment.userName}}:</div>
       <div>{{comment.text}}</div>
     </div>

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { PictureDto } from '../structures/PictureDto';
 import { IComment, Post } from '../structures/Post';
-import { AuthService } from './auth.service';
 import { HttpService } from './http.service';
-import { MOCK_POSTS } from './mock';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +10,7 @@ export class PictureHandlerService {
 
   constructor(private httpService:HttpService) { }
 
-  posts:Post[] = MOCK_POSTS;
+  posts:Post[] =[];
 
   isLoading:boolean = false;
 
@@ -35,11 +32,7 @@ export class PictureHandlerService {
   }
 
   async getFileList():Promise<void>{
-    //HTTP get all pictures
-    //await new Promise(f => setTimeout(f, 1000));
     this.posts = await this.httpService.getPictures();
-    //this.posts = MOCK_POSTS;
-    //return this.posts
   }
 
   async searchPost(keyword:string):Promise<void>{
@@ -47,7 +40,6 @@ export class PictureHandlerService {
   }
 
   async addComment(postId:string, comment:IComment):Promise<void>{
-    //await new Promise(f => setTimeout(f, 1000));
     try {
       let newComment:IComment = await this.httpService.postComment(postId, comment.text);
       this.posts.find(p=>p.id===postId)?.comments.push(newComment);

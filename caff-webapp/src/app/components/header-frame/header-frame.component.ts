@@ -13,6 +13,8 @@ import { Roles } from 'src/app/structures/User';
 })
 export class HeaderFrameComponent implements OnInit {
 
+  searchValue:string = '';
+  hideSearch:boolean = false;
   constructor(private router:Router, public dialog:MatDialog, public authService:AuthService, private pictureService:PictureHandlerService) { }
 
   public get userName() : string {
@@ -31,6 +33,7 @@ export class HeaderFrameComponent implements OnInit {
     return AuthService.loggedInUser?.role===Roles.ADMIN;
   }
 
+  
 
   ngOnInit(): void {
   }
@@ -41,26 +44,24 @@ export class HeaderFrameComponent implements OnInit {
     });
   }
 
-  onEditProfile():void{
-    this.router.navigate(['auth', 'profile']);
-  }
-
   onTitle():void{
+    this.hideSearch=false;
     this.router.navigate(['auth','home']);
   }
 
   onUsers():void{
+    this.hideSearch=true;
     this.router.navigate(['auth','users']);
   }
 
   onLogout():void{
-    //Discard token etc...
+    this.authService.logout();
     this.router.navigate(['signin']);
   }
 
-  async onSearchSubmit(value:string):Promise<void>{
+  async onSearchSubmit():Promise<void>{
     this.pictureService.isLoading = true;
-    await this.pictureService.searchPost(value);
+    await this.pictureService.searchPost(this.searchValue);
     this.pictureService.isLoading = false;
   }
 

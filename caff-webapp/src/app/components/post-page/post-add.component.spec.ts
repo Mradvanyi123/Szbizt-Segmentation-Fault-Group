@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PostAddComponent } from './post-add.component';
 
@@ -8,7 +10,10 @@ describe('PostPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostAddComponent ]
+      imports:[HttpClientModule, MatDialogModule],
+      declarations: [ PostAddComponent ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} }]
     })
     .compileComponents();
   });
