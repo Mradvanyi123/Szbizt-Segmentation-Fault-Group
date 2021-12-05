@@ -1,0 +1,19 @@
+<div >
+  <input type="text" placeholder="Post title" [(ngModel)]="title"/>
+  <div class="file-picker">
+    <input type="file" style="display: none" #fileInput accept=".caff" (change)="onChangeFileInput()" />
+    <button mat-raised-button class="file-select-button" (click)="onClickFileInputButton()">
+      <mat-icon>attach_file</mat-icon>
+      <span>Select caff</span>
+    </button>
+    <p class="file-name" *ngIf="!file; else fileName">No file selected</p>
+    <ng-template #fileName>
+      <p class="file-name">{{ file?.name }}</p>
+    </ng-template>
+  </div>
+
+  <button class="upload-btn" mat-button (click)="onUpload()">
+    <span *ngIf="!isLoading">Upload</span>
+    <mat-spinner *ngIf="isLoading" [color]="'white'" [diameter]="20"></mat-spinner>
+  </button>
+</div>
