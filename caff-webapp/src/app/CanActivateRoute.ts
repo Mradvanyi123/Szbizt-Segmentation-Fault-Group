@@ -5,7 +5,7 @@ import { AuthService } from "./services/auth.service";
 import { Roles } from "./structures/User";
 
 @Injectable()
-export class CanActivateRoute implements CanActivate{
+export class CanActivateUser implements CanActivate{
 
     constructor(private authService:AuthService, private router:Router){}
 
