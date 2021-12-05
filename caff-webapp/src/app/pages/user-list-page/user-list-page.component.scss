@@ -1,0 +1,10 @@
+.wrapper{
+    margin: 10px 100px;
+}
+mat-card{
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 10% 20% auto;
+    align-items: center;
+    gap: 10px;
+}
