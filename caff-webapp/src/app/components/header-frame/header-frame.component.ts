@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { PostAddComponent } from 'src/app/components/post-page/post-add.component';
+import { PostAddComponent } from 'src/app/components/post-add/post-add.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { PictureHandlerService } from 'src/app/services/picture-handler.service';
 import { Roles } from 'src/app/structures/User';
